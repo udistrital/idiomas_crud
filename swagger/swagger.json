@@ -1,0 +1,1034 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "beego Test API",
+        "description": "beego has a very cool tools to autogenerate documents for your API",
+        "version": "1.0.0",
+        "termsOfService": "http://beego.me/",
+        "contact": {
+            "email": "astaxie@gmail.com"
+        },
+        "license": {
+            "name": "Url http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "basePath": "/v1",
+    "paths": {
+        "/clasificacion_nivel_idioma/": {
+            "get": {
+                "tags": [
+                    "clasificacion_nivel_idioma"
+                ],
+                "summary": "get ClasificacionNivelIdioma",
+                "operationId": "ClasificacionNivelIdiomaController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "models.ClasificacionNivelIdioma",
+                        "schema": {
+                            "$ref": "#/definitions/ClasificacionNivelIdioma"
+                        }
+                    },
+                    "403": {}
+                }
+            },
+            "post": {
+                "tags": [
+                    "clasificacion_nivel_idioma"
+                ],
+                "summary": "create ClasificacionNivelIdioma",
+                "operationId": "ClasificacionNivelIdiomaController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for ClasificacionNivelIdioma content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ClasificacionNivelIdioma"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "models.ClasificacionNivelIdioma"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/clasificacion_nivel_idioma/{id}": {
+            "get": {
+                "tags": [
+                    "clasificacion_nivel_idioma"
+                ],
+                "summary": "get ClasificacionNivelIdioma by id",
+                "operationId": "ClasificacionNivelIdiomaController.Get",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "models.ClasificacionNivelIdioma",
+                        "schema": {
+                            "$ref": "#/definitions/ClasificacionNivelIdioma"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "clasificacion_nivel_idioma"
+                ],
+                "summary": "update the ClasificacionNivelIdioma",
+                "operationId": "ClasificacionNivelIdiomaController.Update",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for ClasificacionNivelIdioma content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ClasificacionNivelIdioma"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "models.ClasificacionNivelIdioma",
+                        "schema": {
+                            "$ref": "#/definitions/ClasificacionNivelIdioma"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "clasificacion_nivel_idioma"
+                ],
+                "summary": "delete the ClasificacionNivelIdioma",
+                "operationId": "ClasificacionNivelIdiomaController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/conocimiento_idioma/": {
+            "get": {
+                "tags": [
+                    "conocimiento_idioma"
+                ],
+                "summary": "get ConocimientoIdioma",
+                "operationId": "ConocimientoIdiomaController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "models.ConocimientoIdioma",
+                        "schema": {
+                            "$ref": "#/definitions/ConocimientoIdioma"
+                        }
+                    },
+                    "403": {}
+                }
+            },
+            "post": {
+                "tags": [
+                    "conocimiento_idioma"
+                ],
+                "summary": "create ConocimientoIdioma",
+                "operationId": "ConocimientoIdiomaController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for ConocimientoIdioma content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ConocimientoIdioma"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "models.ConocimientoIdioma"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/conocimiento_idioma/{id}": {
+            "get": {
+                "tags": [
+                    "conocimiento_idioma"
+                ],
+                "summary": "get ConocimientoIdioma by id",
+                "operationId": "ConocimientoIdiomaController.Get",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "models.ConocimientoIdioma",
+                        "schema": {
+                            "$ref": "#/definitions/ConocimientoIdioma"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "conocimiento_idioma"
+                ],
+                "summary": "update the ConocimientoIdioma",
+                "operationId": "ConocimientoIdiomaController.Update",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for ConocimientoIdioma content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ConocimientoIdioma"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "models.ConocimientoIdioma",
+                        "schema": {
+                            "$ref": "#/definitions/ConocimientoIdioma"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "conocimiento_idioma"
+                ],
+                "summary": "delete the ConocimientoIdioma",
+                "operationId": "ConocimientoIdiomaController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/idioma/": {
+            "get": {
+                "tags": [
+                    "idioma"
+                ],
+                "summary": "get Idioma",
+                "operationId": "IdiomaController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "models.Idioma",
+                        "schema": {
+                            "$ref": "#/definitions/Idioma"
+                        }
+                    },
+                    "403": {}
+                }
+            },
+            "post": {
+                "tags": [
+                    "idioma"
+                ],
+                "summary": "create Idioma",
+                "operationId": "IdiomaController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Idioma content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Idioma"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "models.Idioma"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/idioma/{id}": {
+            "get": {
+                "tags": [
+                    "idioma"
+                ],
+                "summary": "get Idioma by id",
+                "operationId": "IdiomaController.Get",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "models.Idioma",
+                        "schema": {
+                            "$ref": "#/definitions/Idioma"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "idioma"
+                ],
+                "summary": "update the Idioma",
+                "operationId": "IdiomaController.Update",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Idioma content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Idioma"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "models.Idioma",
+                        "schema": {
+                            "$ref": "#/definitions/Idioma"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "idioma"
+                ],
+                "summary": "delete the Idioma",
+                "operationId": "IdiomaController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/soporte_conocimiento_idioma/": {
+            "get": {
+                "tags": [
+                    "soporte_conocimiento_idioma"
+                ],
+                "summary": "get SoporteConocimientoIdioma",
+                "operationId": "SoporteConocimientoIdiomaController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "models.SoporteConocimientoIdioma",
+                        "schema": {
+                            "$ref": "#/definitions/SoporteConocimientoIdioma"
+                        }
+                    },
+                    "403": {}
+                }
+            },
+            "post": {
+                "tags": [
+                    "soporte_conocimiento_idioma"
+                ],
+                "summary": "create SoporteConocimientoIdioma",
+                "operationId": "SoporteConocimientoIdiomaController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for SoporteConocimientoIdioma content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/SoporteConocimientoIdioma"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "models.SoporteConocimientoIdioma"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/soporte_conocimiento_idioma/{id}": {
+            "get": {
+                "tags": [
+                    "soporte_conocimiento_idioma"
+                ],
+                "summary": "get SoporteConocimientoIdioma by id",
+                "operationId": "SoporteConocimientoIdiomaController.Get",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "models.SoporteConocimientoIdioma",
+                        "schema": {
+                            "$ref": "#/definitions/SoporteConocimientoIdioma"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "soporte_conocimiento_idioma"
+                ],
+                "summary": "update the SoporteConocimientoIdioma",
+                "operationId": "SoporteConocimientoIdiomaController.Update",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for SoporteConocimientoIdioma content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/SoporteConocimientoIdioma"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "models.SoporteConocimientoIdioma",
+                        "schema": {
+                            "$ref": "#/definitions/SoporteConocimientoIdioma"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "soporte_conocimiento_idioma"
+                ],
+                "summary": "delete the SoporteConocimientoIdioma",
+                "operationId": "SoporteConocimientoIdiomaController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/valor_nivel_idioma/": {
+            "get": {
+                "tags": [
+                    "valor_nivel_idioma"
+                ],
+                "summary": "get ValorNivelIdioma",
+                "operationId": "ValorNivelIdiomaController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "models.ValorNivelIdioma",
+                        "schema": {
+                            "$ref": "#/definitions/ValorNivelIdioma"
+                        }
+                    },
+                    "403": {}
+                }
+            },
+            "post": {
+                "tags": [
+                    "valor_nivel_idioma"
+                ],
+                "summary": "create ValorNivelIdioma",
+                "operationId": "ValorNivelIdiomaController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for ValorNivelIdioma content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ValorNivelIdioma"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "models.ValorNivelIdioma"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/valor_nivel_idioma/{id}": {
+            "get": {
+                "tags": [
+                    "valor_nivel_idioma"
+                ],
+                "summary": "get ValorNivelIdioma by id",
+                "operationId": "ValorNivelIdiomaController.Get",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "models.ValorNivelIdioma",
+                        "schema": {
+                            "$ref": "#/definitions/ValorNivelIdioma"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "valor_nivel_idioma"
+                ],
+                "summary": "update the ValorNivelIdioma",
+                "operationId": "ValorNivelIdiomaController.Update",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for ValorNivelIdioma content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ValorNivelIdioma"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "models.ValorNivelIdioma",
+                        "schema": {
+                            "$ref": "#/definitions/ValorNivelIdioma"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "valor_nivel_idioma"
+                ],
+                "summary": "delete the ValorNivelIdioma",
+                "operationId": "ValorNivelIdiomaController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "ClasificacionNivelIdioma": {
+            "title": "ClasificacionNivelIdioma",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "CodigoAbreviacion": {
+                    "type": "string"
+                },
+                "Descripcion": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Nombre": {
+                    "type": "string"
+                },
+                "NumeroOrden": {
+                    "type": "number",
+                    "format": "double"
+                }
+            }
+        },
+        "ConocimientoIdioma": {
+            "title": "ConocimientoIdioma",
+            "type": "object",
+            "properties": {
+                "ClasificacionNivelIdioma": {
+                    "$ref": "#/definitions/ClasificacionNivelIdioma"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Idioma": {
+                    "$ref": "#/definitions/Idioma"
+                },
+                "Nativo": {
+                    "type": "boolean"
+                },
+                "NivelEscribe": {
+                    "$ref": "#/definitions/ValorNivelIdioma"
+                },
+                "NivelEscucha": {
+                    "$ref": "#/definitions/ValorNivelIdioma"
+                },
+                "NivelHabla": {
+                    "$ref": "#/definitions/ValorNivelIdioma"
+                },
+                "NivelLee": {
+                    "$ref": "#/definitions/ValorNivelIdioma"
+                },
+                "Persona": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "Idioma": {
+            "title": "Idioma",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "CodigoAbreviacion": {
+                    "type": "string"
+                },
+                "Descripcion": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Nombre": {
+                    "type": "string"
+                },
+                "NumeroOrden": {
+                    "type": "number",
+                    "format": "double"
+                }
+            }
+        },
+        "SoporteConocimientoIdioma": {
+            "title": "SoporteConocimientoIdioma",
+            "type": "object",
+            "properties": {
+                "ConocimientoIdioma": {
+                    "$ref": "#/definitions/ConocimientoIdioma"
+                },
+                "Descripcion": {
+                    "type": "string"
+                },
+                "Documento": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Institucion": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "ValorNivelIdioma": {
+            "title": "ValorNivelIdioma",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "CodigoAbreviacion": {
+                    "type": "string"
+                },
+                "Descripcion": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Nombre": {
+                    "type": "string"
+                },
+                "NumeroOrden": {
+                    "type": "number",
+                    "format": "double"
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "soporte_conocimiento_idioma",
+            "description": "oprations for SoporteConocimientoIdioma\n"
+        },
+        {
+            "name": "idioma",
+            "description": "oprations for Idioma\n"
+        },
+        {
+            "name": "clasificacion_nivel_idioma",
+            "description": "oprations for ClasificacionNivelIdioma\n"
+        },
+        {
+            "name": "valor_nivel_idioma",
+            "description": "oprations for ValorNivelIdioma\n"
+        },
+        {
+            "name": "conocimiento_idioma",
+            "description": "oprations for ConocimientoIdioma\n"
+        }
+    ]
+}
