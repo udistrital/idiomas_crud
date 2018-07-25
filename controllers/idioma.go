@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"encoding/json"
-	"errors"
 	"strconv"
 	"strings"
 
@@ -37,10 +36,10 @@ func (c *IdiomaController) Post() {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
 		} else {
-			c.Data["json"] = err.Error()
+			c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
 		}
 	} else {
-		c.Data["json"] = err.Error()
+		c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
 	}
 	c.ServeJSON()
 }
@@ -56,7 +55,7 @@ func (c *IdiomaController) GetOne() {
 	id, _ := strconv.Atoi(idStr)
 	v, err := models.GetIdiomaById(id)
 	if err != nil {
-		c.Data["json"] = err.Error()
+		c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
 	} else {
 		c.Data["json"] = v
 	}
@@ -107,7 +106,7 @@ func (c *IdiomaController) GetAll() {
 		for _, cond := range strings.Split(v, ",") {
 			kv := strings.SplitN(cond, ":", 2)
 			if len(kv) != 2 {
-				c.Data["json"] = errors.New("Error: invalid query key/value pair")
+				c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: "Error: invalid query key/value pair"}
 				c.ServeJSON()
 				return
 			}
@@ -118,7 +117,7 @@ func (c *IdiomaController) GetAll() {
 
 	l, err := models.GetAllIdioma(query, fields, sortby, order, offset, limit)
 	if err != nil {
-		c.Data["json"] = err.Error()
+		c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
 	} else {
 		c.Data["json"] = l
 	}
@@ -138,12 +137,12 @@ func (c *IdiomaController) Put() {
 	v := models.Idioma{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if err := models.UpdateIdiomaById(&v); err == nil {
-			c.Data["json"] = "OK"
+			c.Data["json"] = models.Alert{Type: "success", Code: "200", Body: "OK"}
 		} else {
-			c.Data["json"] = err.Error()
+			c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
 		}
 	} else {
-		c.Data["json"] = err.Error()
+		c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
 	}
 	c.ServeJSON()
 }
@@ -158,9 +157,9 @@ func (c *IdiomaController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
 	if err := models.DeleteIdioma(id); err == nil {
-		c.Data["json"] = "OK"
+		c.Data["json"] = models.Alert{Type: "success", Code: "200", Body: "OK"}
 	} else {
-		c.Data["json"] = err.Error()
+		c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
 	}
 	c.ServeJSON()
 }
