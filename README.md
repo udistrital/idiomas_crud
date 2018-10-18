@@ -17,4 +17,4 @@ Go version >= 1.8.
  ## Example:
 IDIOMAS_HTTP_PORT=8095 IDIOMAS_CRUD__PGUSER=postgres IDIOMAS_CRUD__PGPASS=password IDIOMAS_CRUD__PGURLS=localhost IDIOMAS_CRUD__PGDB=local IDIOMAS_CRUD__SCHEMA=core_new bee run
  ## Model DB
-![image](https://github.com/udistrital/idiomas_crud/blob/dev/modelo_idiomas_crud.png).
+![image](https://github.com/udistrital/idiomas_crud/blob/develop/modelo_idiomas_crud.png).
