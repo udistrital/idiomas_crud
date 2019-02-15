@@ -9,7 +9,8 @@
             "email": "astaxie@gmail.com"
         },
         "license": {
-            "name": "Url http://www.apache.org/licenses/LICENSE-2.0.html"
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
         }
     },
     "basePath": "/v1",
@@ -19,7 +20,7 @@
                 "tags": [
                     "clasificacion_nivel_idioma"
                 ],
-                "summary": "get ClasificacionNivelIdioma",
+                "description": "get ClasificacionNivelIdioma",
                 "operationId": "ClasificacionNivelIdiomaController.Get All",
                 "parameters": [
                     {
@@ -61,19 +62,21 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.ClasificacionNivelIdioma",
+                        "description": "",
                         "schema": {
-                            "$ref": "#/definitions/ClasificacionNivelIdioma"
+                            "$ref": "#/definitions/models.ClasificacionNivelIdioma"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
                 "tags": [
                     "clasificacion_nivel_idioma"
                 ],
-                "summary": "create ClasificacionNivelIdioma",
+                "description": "create ClasificacionNivelIdioma",
                 "operationId": "ClasificacionNivelIdiomaController.Post",
                 "parameters": [
                     {
@@ -82,13 +85,13 @@
                         "description": "body for ClasificacionNivelIdioma content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/ClasificacionNivelIdioma"
+                            "$ref": "#/definitions/models.ClasificacionNivelIdioma"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "models.ClasificacionNivelIdioma"
+                        "description": "{int} models.ClasificacionNivelIdioma"
                     },
                     "403": {
                         "description": "body is empty"
@@ -101,7 +104,7 @@
                 "tags": [
                     "clasificacion_nivel_idioma"
                 ],
-                "summary": "get ClasificacionNivelIdioma by id",
+                "description": "get ClasificacionNivelIdioma by id",
                 "operationId": "ClasificacionNivelIdiomaController.Get",
                 "parameters": [
                     {
@@ -114,9 +117,9 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.ClasificacionNivelIdioma",
+                        "description": "",
                         "schema": {
-                            "$ref": "#/definitions/ClasificacionNivelIdioma"
+                            "$ref": "#/definitions/models.ClasificacionNivelIdioma"
                         }
                     },
                     "403": {
@@ -128,7 +131,7 @@
                 "tags": [
                     "clasificacion_nivel_idioma"
                 ],
-                "summary": "update the ClasificacionNivelIdioma",
+                "description": "update the ClasificacionNivelIdioma",
                 "operationId": "ClasificacionNivelIdiomaController.Update",
                 "parameters": [
                     {
@@ -144,15 +147,15 @@
                         "description": "body for ClasificacionNivelIdioma content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/ClasificacionNivelIdioma"
+                            "$ref": "#/definitions/models.ClasificacionNivelIdioma"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.ClasificacionNivelIdioma",
+                        "description": "",
                         "schema": {
-                            "$ref": "#/definitions/ClasificacionNivelIdioma"
+                            "$ref": "#/definitions/models.ClasificacionNivelIdioma"
                         }
                     },
                     "403": {
@@ -164,7 +167,7 @@
                 "tags": [
                     "clasificacion_nivel_idioma"
                 ],
-                "summary": "delete the ClasificacionNivelIdioma",
+                "description": "delete the ClasificacionNivelIdioma",
                 "operationId": "ClasificacionNivelIdiomaController.Delete",
                 "parameters": [
                     {
@@ -177,7 +180,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "delete success!"
+                        "description": "{string} delete success!"
                     },
                     "403": {
                         "description": "id is empty"
@@ -190,7 +193,7 @@
                 "tags": [
                     "conocimiento_idioma"
                 ],
-                "summary": "get ConocimientoIdioma",
+                "description": "get ConocimientoIdioma",
                 "operationId": "ConocimientoIdiomaController.Get All",
                 "parameters": [
                     {
@@ -232,19 +235,21 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.ConocimientoIdioma",
+                        "description": "",
                         "schema": {
-                            "$ref": "#/definitions/ConocimientoIdioma"
+                            "$ref": "#/definitions/models.ConocimientoIdioma"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
                 "tags": [
                     "conocimiento_idioma"
                 ],
-                "summary": "create ConocimientoIdioma",
+                "description": "create ConocimientoIdioma",
                 "operationId": "ConocimientoIdiomaController.Post",
                 "parameters": [
                     {
@@ -253,13 +258,13 @@
                         "description": "body for ConocimientoIdioma content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/ConocimientoIdioma"
+                            "$ref": "#/definitions/models.ConocimientoIdioma"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "models.ConocimientoIdioma"
+                        "description": "{int} models.ConocimientoIdioma"
                     },
                     "403": {
                         "description": "body is empty"
@@ -272,7 +277,7 @@
                 "tags": [
                     "conocimiento_idioma"
                 ],
-                "summary": "get ConocimientoIdioma by id",
+                "description": "get ConocimientoIdioma by id",
                 "operationId": "ConocimientoIdiomaController.Get",
                 "parameters": [
                     {
@@ -285,9 +290,9 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.ConocimientoIdioma",
+                        "description": "",
                         "schema": {
-                            "$ref": "#/definitions/ConocimientoIdioma"
+                            "$ref": "#/definitions/models.ConocimientoIdioma"
                         }
                     },
                     "403": {
@@ -299,7 +304,7 @@
                 "tags": [
                     "conocimiento_idioma"
                 ],
-                "summary": "update the ConocimientoIdioma",
+                "description": "update the ConocimientoIdioma",
                 "operationId": "ConocimientoIdiomaController.Update",
                 "parameters": [
                     {
@@ -315,15 +320,15 @@
                         "description": "body for ConocimientoIdioma content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/ConocimientoIdioma"
+                            "$ref": "#/definitions/models.ConocimientoIdioma"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.ConocimientoIdioma",
+                        "description": "",
                         "schema": {
-                            "$ref": "#/definitions/ConocimientoIdioma"
+                            "$ref": "#/definitions/models.ConocimientoIdioma"
                         }
                     },
                     "403": {
@@ -335,7 +340,7 @@
                 "tags": [
                     "conocimiento_idioma"
                 ],
-                "summary": "delete the ConocimientoIdioma",
+                "description": "delete the ConocimientoIdioma",
                 "operationId": "ConocimientoIdiomaController.Delete",
                 "parameters": [
                     {
@@ -348,7 +353,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "delete success!"
+                        "description": "{string} delete success!"
                     },
                     "403": {
                         "description": "id is empty"
@@ -361,7 +366,7 @@
                 "tags": [
                     "idioma"
                 ],
-                "summary": "get Idioma",
+                "description": "get Idioma",
                 "operationId": "IdiomaController.Get All",
                 "parameters": [
                     {
@@ -403,19 +408,21 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.Idioma",
+                        "description": "",
                         "schema": {
-                            "$ref": "#/definitions/Idioma"
+                            "$ref": "#/definitions/models.Idioma"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
                 "tags": [
                     "idioma"
                 ],
-                "summary": "create Idioma",
+                "description": "create Idioma",
                 "operationId": "IdiomaController.Post",
                 "parameters": [
                     {
@@ -424,13 +431,13 @@
                         "description": "body for Idioma content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Idioma"
+                            "$ref": "#/definitions/models.Idioma"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "models.Idioma"
+                        "description": "{int} models.Idioma"
                     },
                     "403": {
                         "description": "body is empty"
@@ -443,7 +450,7 @@
                 "tags": [
                     "idioma"
                 ],
-                "summary": "get Idioma by id",
+                "description": "get Idioma by id",
                 "operationId": "IdiomaController.Get",
                 "parameters": [
                     {
@@ -456,9 +463,9 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.Idioma",
+                        "description": "",
                         "schema": {
-                            "$ref": "#/definitions/Idioma"
+                            "$ref": "#/definitions/models.Idioma"
                         }
                     },
                     "403": {
@@ -470,7 +477,7 @@
                 "tags": [
                     "idioma"
                 ],
-                "summary": "update the Idioma",
+                "description": "update the Idioma",
                 "operationId": "IdiomaController.Update",
                 "parameters": [
                     {
@@ -486,15 +493,15 @@
                         "description": "body for Idioma content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Idioma"
+                            "$ref": "#/definitions/models.Idioma"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.Idioma",
+                        "description": "",
                         "schema": {
-                            "$ref": "#/definitions/Idioma"
+                            "$ref": "#/definitions/models.Idioma"
                         }
                     },
                     "403": {
@@ -506,7 +513,7 @@
                 "tags": [
                     "idioma"
                 ],
-                "summary": "delete the Idioma",
+                "description": "delete the Idioma",
                 "operationId": "IdiomaController.Delete",
                 "parameters": [
                     {
@@ -519,7 +526,180 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "delete success!"
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/notas_idioma/": {
+            "get": {
+                "tags": [
+                    "notas_idioma"
+                ],
+                "description": "get NotasIdioma",
+                "operationId": "NotasIdiomaController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.NotasIdioma"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "notas_idioma"
+                ],
+                "description": "create NotasIdioma",
+                "operationId": "NotasIdiomaController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for NotasIdioma content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.NotasIdioma"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.NotasIdioma"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/notas_idioma/{id}": {
+            "get": {
+                "tags": [
+                    "notas_idioma"
+                ],
+                "description": "get NotasIdioma by id",
+                "operationId": "NotasIdiomaController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.NotasIdioma"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "notas_idioma"
+                ],
+                "description": "update the NotasIdioma",
+                "operationId": "NotasIdiomaController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for NotasIdioma content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.NotasIdioma"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.NotasIdioma"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "notas_idioma"
+                ],
+                "description": "delete the NotasIdioma",
+                "operationId": "NotasIdiomaController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
                     },
                     "403": {
                         "description": "id is empty"
@@ -532,7 +712,7 @@
                 "tags": [
                     "soporte_conocimiento_idioma"
                 ],
-                "summary": "get SoporteConocimientoIdioma",
+                "description": "get SoporteConocimientoIdioma",
                 "operationId": "SoporteConocimientoIdiomaController.Get All",
                 "parameters": [
                     {
@@ -574,19 +754,21 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.SoporteConocimientoIdioma",
+                        "description": "",
                         "schema": {
-                            "$ref": "#/definitions/SoporteConocimientoIdioma"
+                            "$ref": "#/definitions/models.SoporteConocimientoIdioma"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
                 "tags": [
                     "soporte_conocimiento_idioma"
                 ],
-                "summary": "create SoporteConocimientoIdioma",
+                "description": "create SoporteConocimientoIdioma",
                 "operationId": "SoporteConocimientoIdiomaController.Post",
                 "parameters": [
                     {
@@ -595,13 +777,13 @@
                         "description": "body for SoporteConocimientoIdioma content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/SoporteConocimientoIdioma"
+                            "$ref": "#/definitions/models.SoporteConocimientoIdioma"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "models.SoporteConocimientoIdioma"
+                        "description": "{int} models.SoporteConocimientoIdioma"
                     },
                     "403": {
                         "description": "body is empty"
@@ -614,7 +796,7 @@
                 "tags": [
                     "soporte_conocimiento_idioma"
                 ],
-                "summary": "get SoporteConocimientoIdioma by id",
+                "description": "get SoporteConocimientoIdioma by id",
                 "operationId": "SoporteConocimientoIdiomaController.Get",
                 "parameters": [
                     {
@@ -627,9 +809,9 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.SoporteConocimientoIdioma",
+                        "description": "",
                         "schema": {
-                            "$ref": "#/definitions/SoporteConocimientoIdioma"
+                            "$ref": "#/definitions/models.SoporteConocimientoIdioma"
                         }
                     },
                     "403": {
@@ -641,7 +823,7 @@
                 "tags": [
                     "soporte_conocimiento_idioma"
                 ],
-                "summary": "update the SoporteConocimientoIdioma",
+                "description": "update the SoporteConocimientoIdioma",
                 "operationId": "SoporteConocimientoIdiomaController.Update",
                 "parameters": [
                     {
@@ -657,15 +839,15 @@
                         "description": "body for SoporteConocimientoIdioma content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/SoporteConocimientoIdioma"
+                            "$ref": "#/definitions/models.SoporteConocimientoIdioma"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.SoporteConocimientoIdioma",
+                        "description": "",
                         "schema": {
-                            "$ref": "#/definitions/SoporteConocimientoIdioma"
+                            "$ref": "#/definitions/models.SoporteConocimientoIdioma"
                         }
                     },
                     "403": {
@@ -677,7 +859,7 @@
                 "tags": [
                     "soporte_conocimiento_idioma"
                 ],
-                "summary": "delete the SoporteConocimientoIdioma",
+                "description": "delete the SoporteConocimientoIdioma",
                 "operationId": "SoporteConocimientoIdiomaController.Delete",
                 "parameters": [
                     {
@@ -690,7 +872,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "delete success!"
+                        "description": "{string} delete success!"
                     },
                     "403": {
                         "description": "id is empty"
@@ -703,7 +885,7 @@
                 "tags": [
                     "valor_nivel_idioma"
                 ],
-                "summary": "get ValorNivelIdioma",
+                "description": "get ValorNivelIdioma",
                 "operationId": "ValorNivelIdiomaController.Get All",
                 "parameters": [
                     {
@@ -745,19 +927,21 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.ValorNivelIdioma",
+                        "description": "",
                         "schema": {
-                            "$ref": "#/definitions/ValorNivelIdioma"
+                            "$ref": "#/definitions/models.ValorNivelIdioma"
                         }
                     },
-                    "403": {}
+                    "403": {
+                        "description": ""
+                    }
                 }
             },
             "post": {
                 "tags": [
                     "valor_nivel_idioma"
                 ],
-                "summary": "create ValorNivelIdioma",
+                "description": "create ValorNivelIdioma",
                 "operationId": "ValorNivelIdiomaController.Post",
                 "parameters": [
                     {
@@ -766,13 +950,13 @@
                         "description": "body for ValorNivelIdioma content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/ValorNivelIdioma"
+                            "$ref": "#/definitions/models.ValorNivelIdioma"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "models.ValorNivelIdioma"
+                        "description": "{int} models.ValorNivelIdioma"
                     },
                     "403": {
                         "description": "body is empty"
@@ -785,7 +969,7 @@
                 "tags": [
                     "valor_nivel_idioma"
                 ],
-                "summary": "get ValorNivelIdioma by id",
+                "description": "get ValorNivelIdioma by id",
                 "operationId": "ValorNivelIdiomaController.Get",
                 "parameters": [
                     {
@@ -798,9 +982,9 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.ValorNivelIdioma",
+                        "description": "",
                         "schema": {
-                            "$ref": "#/definitions/ValorNivelIdioma"
+                            "$ref": "#/definitions/models.ValorNivelIdioma"
                         }
                     },
                     "403": {
@@ -812,7 +996,7 @@
                 "tags": [
                     "valor_nivel_idioma"
                 ],
-                "summary": "update the ValorNivelIdioma",
+                "description": "update the ValorNivelIdioma",
                 "operationId": "ValorNivelIdiomaController.Update",
                 "parameters": [
                     {
@@ -828,15 +1012,15 @@
                         "description": "body for ValorNivelIdioma content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/ValorNivelIdioma"
+                            "$ref": "#/definitions/models.ValorNivelIdioma"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "models.ValorNivelIdioma",
+                        "description": "",
                         "schema": {
-                            "$ref": "#/definitions/ValorNivelIdioma"
+                            "$ref": "#/definitions/models.ValorNivelIdioma"
                         }
                     },
                     "403": {
@@ -848,7 +1032,7 @@
                 "tags": [
                     "valor_nivel_idioma"
                 ],
-                "summary": "delete the ValorNivelIdioma",
+                "description": "delete the ValorNivelIdioma",
                 "operationId": "ValorNivelIdiomaController.Delete",
                 "parameters": [
                     {
@@ -861,7 +1045,180 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "delete success!"
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/valor_nota/": {
+            "get": {
+                "tags": [
+                    "valor_nota"
+                ],
+                "description": "get ValorNota",
+                "operationId": "ValorNotaController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.ValorNota"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "valor_nota"
+                ],
+                "description": "create ValorNota",
+                "operationId": "ValorNotaController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for ValorNota content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.ValorNota"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.ValorNota"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/valor_nota/{id}": {
+            "get": {
+                "tags": [
+                    "valor_nota"
+                ],
+                "description": "get ValorNota by id",
+                "operationId": "ValorNotaController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.ValorNota"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "valor_nota"
+                ],
+                "description": "update the ValorNota",
+                "operationId": "ValorNotaController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for ValorNota content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.ValorNota"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.ValorNota"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "valor_nota"
+                ],
+                "description": "delete the ValorNota",
+                "operationId": "ValorNotaController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
                     },
                     "403": {
                         "description": "id is empty"
@@ -871,7 +1228,7 @@
         }
     },
     "definitions": {
-        "ClasificacionNivelIdioma": {
+        "models.ClasificacionNivelIdioma": {
             "title": "ClasificacionNivelIdioma",
             "type": "object",
             "properties": {
@@ -897,34 +1254,34 @@
                 }
             }
         },
-        "ConocimientoIdioma": {
+        "models.ConocimientoIdioma": {
             "title": "ConocimientoIdioma",
             "type": "object",
             "properties": {
                 "ClasificacionNivelIdioma": {
-                    "$ref": "#/definitions/ClasificacionNivelIdioma"
+                    "$ref": "#/definitions/models.ClasificacionNivelIdioma"
                 },
                 "Id": {
                     "type": "integer",
                     "format": "int64"
                 },
                 "Idioma": {
-                    "$ref": "#/definitions/Idioma"
+                    "$ref": "#/definitions/models.Idioma"
                 },
                 "Nativo": {
                     "type": "boolean"
                 },
                 "NivelEscribe": {
-                    "$ref": "#/definitions/ValorNivelIdioma"
+                    "$ref": "#/definitions/models.ValorNivelIdioma"
                 },
                 "NivelEscucha": {
-                    "$ref": "#/definitions/ValorNivelIdioma"
+                    "$ref": "#/definitions/models.ValorNivelIdioma"
                 },
                 "NivelHabla": {
-                    "$ref": "#/definitions/ValorNivelIdioma"
+                    "$ref": "#/definitions/models.ValorNivelIdioma"
                 },
                 "NivelLee": {
-                    "$ref": "#/definitions/ValorNivelIdioma"
+                    "$ref": "#/definitions/models.ValorNivelIdioma"
                 },
                 "Persona": {
                     "type": "integer",
@@ -932,7 +1289,7 @@
                 }
             }
         },
-        "Idioma": {
+        "models.Idioma": {
             "title": "Idioma",
             "type": "object",
             "properties": {
@@ -958,12 +1315,34 @@
                 }
             }
         },
-        "SoporteConocimientoIdioma": {
+        "models.NotasIdioma": {
+            "title": "NotasIdioma",
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Idioma": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Periodo": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Persona": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "models.SoporteConocimientoIdioma": {
             "title": "SoporteConocimientoIdioma",
             "type": "object",
             "properties": {
                 "ConocimientoIdioma": {
-                    "$ref": "#/definitions/ConocimientoIdioma"
+                    "$ref": "#/definitions/models.ConocimientoIdioma"
                 },
                 "Descripcion": {
                     "type": "string"
@@ -982,7 +1361,7 @@
                 }
             }
         },
-        "ValorNivelIdioma": {
+        "models.ValorNivelIdioma": {
             "title": "ValorNivelIdioma",
             "type": "object",
             "properties": {
@@ -1007,28 +1386,57 @@
                     "format": "double"
                 }
             }
+        },
+        "models.ValorNota": {
+            "title": "ValorNota",
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "NotasIdioma": {
+                    "$ref": "#/definitions/models.NotasIdioma"
+                },
+                "Porcentaje": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "ValorNota": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
         }
     },
     "tags": [
         {
-            "name": "soporte_conocimiento_idioma",
-            "description": "oprations for SoporteConocimientoIdioma\n"
+            "name": "clasificacion_nivel_idioma",
+            "description": "oprations for ClasificacionNivelIdioma\n"
+        },
+        {
+            "name": "conocimiento_idioma",
+            "description": "oprations for ConocimientoIdioma\n"
         },
         {
             "name": "idioma",
             "description": "oprations for Idioma\n"
         },
         {
-            "name": "clasificacion_nivel_idioma",
-            "description": "oprations for ClasificacionNivelIdioma\n"
+            "name": "notas_idioma",
+            "description": "NotasIdiomaController operations for NotasIdioma\n"
+        },
+        {
+            "name": "soporte_conocimiento_idioma",
+            "description": "oprations for SoporteConocimientoIdioma\n"
         },
         {
             "name": "valor_nivel_idioma",
             "description": "oprations for ValorNivelIdioma\n"
         },
         {
-            "name": "conocimiento_idioma",
-            "description": "oprations for ConocimientoIdioma\n"
+            "name": "valor_nota",
+            "description": "ValorNotaController operations for ValorNota\n"
         }
     ]
 }
