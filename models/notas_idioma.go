@@ -10,7 +10,7 @@ import (
 )
 
 type NotasIdioma struct {
-	Id      int `orm:"column(id);pk"`
+	Id      int `orm:"column(id);pk;auto"`
 	Persona int `orm:"column(persona)"`
 	Idioma  int `orm:"column(idioma)"`
 	Periodo int `orm:"column(periodo)"`
