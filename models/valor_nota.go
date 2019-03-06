@@ -12,7 +12,7 @@ import (
 type ValorNota struct {
 	Id          int          `orm:"column(id);pk;auto"`
 	NotasIdioma *NotasIdioma `orm:"column(notas_idioma);rel(fk)"`
-	ValorNota   int          `orm:"column(valor_nota)"`
+	ValorNota   float64      `orm:"column(valor_nota)"`
 	Porcentaje  int          `orm:"column(porcentaje)"`
 }
 

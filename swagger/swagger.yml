@@ -941,8 +941,8 @@ definitions:
         type: integer
         format: int64
       ValorNota:
-        type: integer
-        format: int64
+        type: number
+        format: double
 tags:
 - name: clasificacion_nivel_idioma
   description: |
