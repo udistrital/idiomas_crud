@@ -17,8 +17,8 @@ func init() {
 	ns := beego.NewNamespace("/v1",
 
 		beego.NSNamespace("/clasificacion_nivel_idioma",
-		beego.NSInclude(
-			&controllers.ClasificacionNivelIdiomaController{},
+			beego.NSInclude(
+				&controllers.ClasificacionNivelIdiomaController{},
 			),
 		),
 
@@ -31,12 +31,6 @@ func init() {
 		beego.NSNamespace("/idioma",
 			beego.NSInclude(
 				&controllers.IdiomaController{},
-			),
-		),
-
-		beego.NSNamespace("/notas_idioma",
-			beego.NSInclude(
-				&controllers.NotasIdiomaController{},
 			),
 		),
 
