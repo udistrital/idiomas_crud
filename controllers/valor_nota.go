@@ -142,7 +142,7 @@ func (c *ValorNotaController) Put() {
 	v := models.ValorNota{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if err := models.UpdateValorNotaById(&v); err == nil {
-			c.Data["json"] = models.Alert{Type: "success", Code: "200", Body: "OK"}
+			c.Data["json"] = models.Alert{Type: "success", Code: "S_200", Body: v}
 		} else {
 			c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
 		}
