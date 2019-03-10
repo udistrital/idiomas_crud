@@ -19,6 +19,7 @@ type ConocimientoIdioma struct {
 	NivelHabla               *ValorNivelIdioma         `orm:"column(nivel_habla);rel(fk)"`
 	Nativo                   bool                      `orm:"column(nativo)"`
 	ClasificacionNivelIdioma *ClasificacionNivelIdioma `orm:"column(clasificacion_nivel_idioma);rel(fk)"`
+	Periodo                  int                       `orm:"column(periodo)"`
 }
 
 func (t *ConocimientoIdioma) TableName() string {

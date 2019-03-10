@@ -10,10 +10,9 @@ import (
 )
 
 type ValorNota struct {
-	Id          int          `orm:"column(id);pk;auto"`
-	NotasIdioma *NotasIdioma `orm:"column(notas_idioma);rel(fk)"`
-	ValorNota   float64      `orm:"column(valor_nota)"`
-	Porcentaje  int          `orm:"column(porcentaje)"`
+	Id                 int                 `orm:"column(id);pk;auto"`
+	ConocimientoIdioma *ConocimientoIdioma `orm:"column(conocimiento_idioma);rel(fk)"`
+	ValorNota          float64             `orm:"column(valor_nota)"`
 }
 
 func (t *ValorNota) TableName() string {

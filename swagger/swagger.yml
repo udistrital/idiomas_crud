@@ -356,121 +356,6 @@ paths:
           description: '{string} delete success!'
         "403":
           description: id is empty
-  /notas_idioma/:
-    get:
-      tags:
-      - notas_idioma
-      description: get NotasIdioma
-      operationId: NotasIdiomaController.Get All
-      parameters:
-      - in: query
-        name: query
-        description: Filter. e.g. col1:v1,col2:v2 ...
-        type: string
-      - in: query
-        name: fields
-        description: Fields returned. e.g. col1,col2 ...
-        type: string
-      - in: query
-        name: sortby
-        description: Sorted-by fields. e.g. col1,col2 ...
-        type: string
-      - in: query
-        name: order
-        description: Order corresponding to each sortby field, if single value, apply
-          to all sortby fields. e.g. desc,asc ...
-        type: string
-      - in: query
-        name: limit
-        description: Limit the size of result set. Must be an integer
-        type: string
-      - in: query
-        name: offset
-        description: Start position of result set. Must be an integer
-        type: string
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.NotasIdioma'
-        "403":
-          description: ""
-    post:
-      tags:
-      - notas_idioma
-      description: create NotasIdioma
-      operationId: NotasIdiomaController.Post
-      parameters:
-      - in: body
-        name: body
-        description: body for NotasIdioma content
-        required: true
-        schema:
-          $ref: '#/definitions/models.NotasIdioma'
-      responses:
-        "201":
-          description: '{int} models.NotasIdioma'
-        "403":
-          description: body is empty
-  /notas_idioma/{id}:
-    get:
-      tags:
-      - notas_idioma
-      description: get NotasIdioma by id
-      operationId: NotasIdiomaController.Get One
-      parameters:
-      - in: path
-        name: id
-        description: The key for staticblock
-        required: true
-        type: string
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.NotasIdioma'
-        "403":
-          description: :id is empty
-    put:
-      tags:
-      - notas_idioma
-      description: update the NotasIdioma
-      operationId: NotasIdiomaController.Put
-      parameters:
-      - in: path
-        name: id
-        description: The id you want to update
-        required: true
-        type: string
-      - in: body
-        name: body
-        description: body for NotasIdioma content
-        required: true
-        schema:
-          $ref: '#/definitions/models.NotasIdioma'
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.NotasIdioma'
-        "403":
-          description: :id is not int
-    delete:
-      tags:
-      - notas_idioma
-      description: delete the NotasIdioma
-      operationId: NotasIdiomaController.Delete
-      parameters:
-      - in: path
-        name: id
-        description: The id you want to delete
-        required: true
-        type: string
-      responses:
-        "200":
-          description: '{string} delete success!'
-        "403":
-          description: id is empty
   /soporte_conocimiento_idioma/:
     get:
       tags:
@@ -856,6 +741,9 @@ definitions:
         $ref: '#/definitions/models.ValorNivelIdioma'
       NivelLee:
         $ref: '#/definitions/models.ValorNivelIdioma'
+      Periodo:
+        type: integer
+        format: int64
       Persona:
         type: integer
         format: int64
@@ -877,22 +765,6 @@ definitions:
       NumeroOrden:
         type: number
         format: double
-  models.NotasIdioma:
-    title: NotasIdioma
-    type: object
-    properties:
-      Id:
-        type: integer
-        format: int64
-      Idioma:
-        type: integer
-        format: int64
-      Periodo:
-        type: integer
-        format: int64
-      Persona:
-        type: integer
-        format: int64
   models.SoporteConocimientoIdioma:
     title: SoporteConocimientoIdioma
     type: object
@@ -932,12 +804,9 @@ definitions:
     title: ValorNota
     type: object
     properties:
+      ConocimientoIdioma:
+        $ref: '#/definitions/models.ConocimientoIdioma'
       Id:
-        type: integer
-        format: int64
-      NotasIdioma:
-        $ref: '#/definitions/models.NotasIdioma'
-      Porcentaje:
         type: integer
         format: int64
       ValorNota:
@@ -953,9 +822,6 @@ tags:
 - name: idioma
   description: |
     oprations for Idioma
-- name: notas_idioma
-  description: |
-    NotasIdiomaController operations for NotasIdioma
 - name: soporte_conocimiento_idioma
   description: |
     oprations for SoporteConocimientoIdioma
