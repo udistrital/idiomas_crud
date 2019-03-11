@@ -1208,8 +1208,8 @@
                     "format": "int64"
                 },
                 "ValorNota": {
-                    "type": "number",
-                    "format": "double"
+                    "type": "integer",
+                    "format": "int64"
                 }
             }
         }

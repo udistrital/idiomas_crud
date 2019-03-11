@@ -12,7 +12,7 @@ import (
 type ValorNota struct {
 	Id                 int                 `orm:"column(id);pk;auto"`
 	ConocimientoIdioma *ConocimientoIdioma `orm:"column(conocimiento_idioma);rel(fk)"`
-	ValorNota          float64             `orm:"column(valor_nota)"`
+	ValorNota          int             `orm:"column(valor_nota)"`
 }
 
 func (t *ValorNota) TableName() string {

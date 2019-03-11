@@ -810,8 +810,8 @@ definitions:
         type: integer
         format: int64
       ValorNota:
-        type: number
-        format: double
+        type: integer
+        format: int64
 tags:
 - name: clasificacion_nivel_idioma
   description: |
