@@ -5,9 +5,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/udistrital/idiomas_crud/models"
-
 	"github.com/astaxie/beego"
+	"github.com/planesticud/idiomas_crud/models"
 )
 
 // oprations for ValorNivelIdioma

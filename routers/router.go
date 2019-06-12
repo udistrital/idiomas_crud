@@ -8,9 +8,8 @@
 package routers
 
 import (
-	"github.com/udistrital/idiomas_crud/controllers"
-
 	"github.com/astaxie/beego"
+	"github.com/planesticud/idiomas_crud/controllers"
 )
 
 func init() {

@@ -1,13 +1,12 @@
 package main
 
 import (
-	_ "github.com/udistrital/idiomas_crud/routers"
-
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/logs"
 	"github.com/astaxie/beego/orm"
 	"github.com/astaxie/beego/plugins/cors"
 	_ "github.com/lib/pq"
+	_ "github.com/planesticud/idiomas_crud/routers"
 	apistatus "github.com/udistrital/utils_oas/apiStatusLib"
 )
 
