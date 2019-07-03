@@ -1,7 +1,7 @@
 package main
 
 import (
-	_ "github.com/udistrital/idiomas_crud/routers"
+	_ "github.com/planesticud/idiomas_crud/routers"
 
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/logs"

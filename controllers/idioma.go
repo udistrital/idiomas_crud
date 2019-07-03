@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/udistrital/idiomas_crud/models"
+	"github.com/planesticud/idiomas_crud/models"
 
 	"github.com/astaxie/beego"
 )
