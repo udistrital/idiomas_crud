@@ -895,6 +895,9 @@
                 "Descripcion": {
                     "type": "string"
                 },
+                "FechaModificacion": {
+                    "type": "string"
+                },
                 "Id": {
                     "type": "integer",
                     "format": "int64"
@@ -914,6 +917,9 @@
             "properties": {
                 "ClasificacionNivelIdioma": {
                     "$ref": "#/definitions/models.ClasificacionNivelIdioma"
+                },
+                "FechaModificacion": {
+                    "type": "string"
                 },
                 "Id": {
                     "type": "integer",
@@ -956,6 +962,9 @@
                 "Descripcion": {
                     "type": "string"
                 },
+                "FechaModificacion": {
+                    "type": "string"
+                },
                 "Id": {
                     "type": "integer",
                     "format": "int64"
@@ -983,6 +992,9 @@
                     "type": "integer",
                     "format": "int64"
                 },
+                "FechaModificacion": {
+                    "type": "string"
+                },
                 "Id": {
                     "type": "integer",
                     "format": "int64"
@@ -1004,6 +1016,9 @@
                     "type": "string"
                 },
                 "Descripcion": {
+                    "type": "string"
+                },
+                "FechaModificacion": {
                     "type": "string"
                 },
                 "Id": {

@@ -6,7 +6,9 @@ import (
 	"strings"
 
 	"github.com/astaxie/beego"
+	"github.com/fatih/structs"
 	"github.com/planesticud/idiomas_crud/models"
+	"github.com/udistrital/utils_oas/formatdata"
 )
 
 // oprations for ClasificacionNivelIdioma
@@ -33,12 +35,20 @@ func (c *ClasificacionNivelIdiomaController) Post() {
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if _, err := models.AddClasificacionNivelIdioma(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
-			c.Data["json"] = v
+			c.Data["json"] = models.Alert{Type: "success", Code: "S_201", Body: v}
+			//c.Ctx.Output.SetStatus(201)
+			//c.Data["json"] = v
 		} else {
-			c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
+			alertdb := structs.Map(err)
+			var code string
+			formatdata.FillStruct(alertdb["Code"], &code)
+			alert := models.Alert{Type: "error", Code: "E_" + code, Body: err.Error()}
+			c.Data["json"] = alert
+			//c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
 		}
 	} else {
 		c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
+		//c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
 	}
 	c.ServeJSON()
 }
@@ -55,6 +65,7 @@ func (c *ClasificacionNivelIdiomaController) GetOne() {
 	v, err := models.GetClasificacionNivelIdiomaById(id)
 	if err != nil {
 		c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
+		//c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
 	} else {
 		c.Data["json"] = v
 	}
@@ -106,6 +117,7 @@ func (c *ClasificacionNivelIdiomaController) GetAll() {
 			kv := strings.SplitN(cond, ":", 2)
 			if len(kv) != 2 {
 				c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: "Error: invalid query key/value pair"}
+				//c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: "Error: invalid query key/value pair"}
 				c.ServeJSON()
 				return
 			}
@@ -116,7 +128,8 @@ func (c *ClasificacionNivelIdiomaController) GetAll() {
 
 	l, err := models.GetAllClasificacionNivelIdioma(query, fields, sortby, order, offset, limit)
 	if err != nil {
-		c.Data["json"] = err.Error()
+		c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
+		//c.Data["json"] = err.Error()
 	} else {
 		c.Data["json"] = l
 	}
@@ -136,9 +149,16 @@ func (c *ClasificacionNivelIdiomaController) Put() {
 	v := models.ClasificacionNivelIdioma{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if err := models.UpdateClasificacionNivelIdiomaById(&v); err == nil {
-			c.Data["json"] = models.Alert{Type: "success", Code: "200", Body: "OK"}
+			c.Ctx.Output.SetStatus(200)
+			c.Data["json"] = models.Alert{Type: "success", Code: "S_200", Body: v}
+			//c.Data["json"] = models.Alert{Type: "success", Code: "200", Body: "OK"}
 		} else {
-			c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
+			alertdb := structs.Map(err)
+			var code string
+			formatdata.FillStruct(alertdb["Code"], &code)
+			alert := models.Alert{Type: "error", Code: "E_" + code, Body: err.Error()}
+			c.Data["json"] = alert
+			//c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
 		}
 	} else {
 		c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
