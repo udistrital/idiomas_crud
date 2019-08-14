@@ -129,6 +129,9 @@ func (c *ConocimientoIdiomaController) GetAll() {
 		c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
 		//c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
 	} else {
+		if l == nil {
+			l = append(l, map[string]interface{}{})
+		}
 		c.Data["json"] = l
 	}
 	c.ServeJSON()
