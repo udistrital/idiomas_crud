@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"reflect"
 	"strings"
-	"time"
 
 	"github.com/astaxie/beego/orm"
+	"github.com/udistrital/utils_oas/time_bogota"
 )
 
 type ClasificacionNivelIdioma struct {
@@ -17,6 +17,7 @@ type ClasificacionNivelIdioma struct {
 	CodigoAbreviacion string  `orm:"column(codigo_abreviacion);null"`
 	Activo            bool    `orm:"column(activo)"`
 	NumeroOrden       float64 `orm:"column(numero_orden);null"`
+	FechaCreacion     string  `orm:"column(fecha_creacion);null"`
 	FechaModificacion string  `orm:"column(fecha_modificacion);null"`
 }
 
@@ -31,9 +32,8 @@ func init() {
 // AddClasificacionNivelIdioma insert a new ClasificacionNivelIdioma into database and returns
 // last inserted Id on success.
 func AddClasificacionNivelIdioma(m *ClasificacionNivelIdioma) (id int64, err error) {
-	var t time.Time
-	t = time.Now()
-	m.FechaModificacion = fmt.Sprintf("%s", t.UTC().Format(time.UnixDate))
+	m.FechaCreacion = time_bogota.TiempoBogotaFormato()
+	m.FechaModificacion = time_bogota.TiempoBogotaFormato()
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
@@ -129,9 +129,7 @@ func GetAllClasificacionNivelIdioma(query map[string]string, fields []string, so
 func UpdateClasificacionNivelIdiomaById(m *ClasificacionNivelIdioma) (err error) {
 	o := orm.NewOrm()
 	v := ClasificacionNivelIdioma{Id: m.Id}
-	var t time.Time
-	t = time.Now()
-	m.FechaModificacion = fmt.Sprintf("%s", t.UTC().Format(time.UnixDate))
+	m.FechaModificacion = time_bogota.TiempoBogotaFormato()
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64

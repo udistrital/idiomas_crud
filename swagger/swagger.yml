@@ -48,8 +48,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.ClasificacionNivelIdioma'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - clasificacion_nivel_idioma
@@ -65,14 +65,14 @@ paths:
       responses:
         "201":
           description: '{int} models.ClasificacionNivelIdioma'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /clasificacion_nivel_idioma/{id}:
     get:
       tags:
       - clasificacion_nivel_idioma
       description: get ClasificacionNivelIdioma by id
-      operationId: ClasificacionNivelIdiomaController.Get
+      operationId: ClasificacionNivelIdiomaController.Get One
       parameters:
       - in: path
         name: id
@@ -84,13 +84,13 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.ClasificacionNivelIdioma'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - clasificacion_nivel_idioma
       description: update the ClasificacionNivelIdioma
-      operationId: ClasificacionNivelIdiomaController.Update
+      operationId: ClasificacionNivelIdiomaController.Put
       parameters:
       - in: path
         name: id
@@ -108,8 +108,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.ClasificacionNivelIdioma'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - clasificacion_nivel_idioma
@@ -124,8 +124,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /conocimiento_idioma/:
     get:
       tags:
@@ -163,8 +163,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.ConocimientoIdioma'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - conocimiento_idioma
@@ -180,8 +180,8 @@ paths:
       responses:
         "201":
           description: '{int} models.ConocimientoIdioma'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /conocimiento_idioma/{id}:
     get:
       tags:
@@ -199,8 +199,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.ConocimientoIdioma'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - conocimiento_idioma
@@ -223,8 +223,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.ConocimientoIdioma'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - conocimiento_idioma
@@ -239,8 +239,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /idioma/:
     get:
       tags:
@@ -278,8 +278,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.Idioma'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - idioma
@@ -295,8 +295,8 @@ paths:
       responses:
         "201":
           description: '{int} models.Idioma'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /idioma/{id}:
     get:
       tags:
@@ -314,8 +314,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.Idioma'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - idioma
@@ -338,8 +338,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.Idioma'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - idioma
@@ -354,8 +354,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /soporte_conocimiento_idioma/:
     get:
       tags:
@@ -393,8 +393,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.SoporteConocimientoIdioma'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - soporte_conocimiento_idioma
@@ -410,8 +410,8 @@ paths:
       responses:
         "201":
           description: '{int} models.SoporteConocimientoIdioma'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /soporte_conocimiento_idioma/{id}:
     get:
       tags:
@@ -429,8 +429,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.SoporteConocimientoIdioma'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - soporte_conocimiento_idioma
@@ -453,8 +453,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.SoporteConocimientoIdioma'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - soporte_conocimiento_idioma
@@ -469,8 +469,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /valor_nivel_idioma/:
     get:
       tags:
@@ -508,8 +508,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.ValorNivelIdioma'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - valor_nivel_idioma
@@ -525,8 +525,8 @@ paths:
       responses:
         "201":
           description: '{int} models.ValorNivelIdioma'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /valor_nivel_idioma/{id}:
     get:
       tags:
@@ -544,8 +544,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.ValorNivelIdioma'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - valor_nivel_idioma
@@ -568,8 +568,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.ValorNivelIdioma'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - valor_nivel_idioma
@@ -584,8 +584,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
 definitions:
   models.ClasificacionNivelIdioma:
     title: ClasificacionNivelIdioma
@@ -596,6 +596,8 @@ definitions:
       CodigoAbreviacion:
         type: string
       Descripcion:
+        type: string
+      FechaCreacion:
         type: string
       FechaModificacion:
         type: string
@@ -613,6 +615,8 @@ definitions:
     properties:
       ClasificacionNivelIdioma:
         $ref: '#/definitions/models.ClasificacionNivelIdioma'
+      FechaCreacion:
+        type: string
       FechaModificacion:
         type: string
       Id:
@@ -643,6 +647,8 @@ definitions:
         type: string
       Descripcion:
         type: string
+      FechaCreacion:
+        type: string
       FechaModificacion:
         type: string
       Id:
@@ -664,6 +670,8 @@ definitions:
       Documento:
         type: integer
         format: int64
+      FechaCreacion:
+        type: string
       FechaModificacion:
         type: string
       Id:
@@ -681,6 +689,8 @@ definitions:
       CodigoAbreviacion:
         type: string
       Descripcion:
+        type: string
+      FechaCreacion:
         type: string
       FechaModificacion:
         type: string
@@ -701,7 +711,7 @@ tags:
     oprations for Idioma
 - name: clasificacion_nivel_idioma
   description: |
-    oprations for ClasificacionNivelIdioma
+    ClasificacionNivelIdiomaController operations for ClasificacionNivelIdioma
 - name: valor_nivel_idioma
   description: |
     oprations for ValorNivelIdioma

@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"reflect"
 	"strings"
-	"time"
 
 	"github.com/astaxie/beego/orm"
+	"github.com/udistrital/utils_oas/time_bogota"
 )
 
 type SoporteConocimientoIdioma struct {
@@ -16,6 +16,7 @@ type SoporteConocimientoIdioma struct {
 	Documento          int                 `orm:"column(documento)"`
 	Descripcion        string              `orm:"column(descripcion);null"`
 	ConocimientoIdioma *ConocimientoIdioma `orm:"column(conocimiento_idioma);rel(fk)"`
+	FechaCreacion      string              `orm:"column(fecha_creacion);null"`
 	FechaModificacion  string              `orm:"column(fecha_modificacion);null"`
 }
 
@@ -30,9 +31,8 @@ func init() {
 // AddSoporteConocimientoIdioma insert a new SoporteConocimientoIdioma into database and returns
 // last inserted Id on success.
 func AddSoporteConocimientoIdioma(m *SoporteConocimientoIdioma) (id int64, err error) {
-	var t time.Time
-	t = time.Now()
-	m.FechaModificacion = fmt.Sprintf("%s", t.UTC().Format(time.UnixDate))
+	m.FechaCreacion = time_bogota.TiempoBogotaFormato()
+	m.FechaModificacion = time_bogota.TiempoBogotaFormato()
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
@@ -128,9 +128,7 @@ func GetAllSoporteConocimientoIdioma(query map[string]string, fields []string, s
 func UpdateSoporteConocimientoIdiomaById(m *SoporteConocimientoIdioma) (err error) {
 	o := orm.NewOrm()
 	v := SoporteConocimientoIdioma{Id: m.Id}
-	var t time.Time
-	t = time.Now()
-	m.FechaModificacion = fmt.Sprintf("%s", t.UTC().Format(time.UnixDate))
+	m.FechaModificacion = time_bogota.TiempoBogotaFormato()
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64

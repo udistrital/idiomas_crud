@@ -6,12 +6,10 @@ import (
 	"strings"
 
 	"github.com/astaxie/beego"
-	"github.com/fatih/structs"
 	"github.com/planesticud/idiomas_crud/models"
-	"github.com/udistrital/utils_oas/formatdata"
 )
 
-// oprations for ClasificacionNivelIdioma
+// ClasificacionNivelIdiomaController operations for ClasificacionNivelIdioma
 type ClasificacionNivelIdiomaController struct {
 	beego.Controller
 }
@@ -24,54 +22,57 @@ func (c *ClasificacionNivelIdiomaController) URLMapping() {
 	c.Mapping("Delete", c.Delete)
 }
 
+// Post ...
 // @Title Post
 // @Description create ClasificacionNivelIdioma
 // @Param	body		body 	models.ClasificacionNivelIdioma	true		"body for ClasificacionNivelIdioma content"
 // @Success 201 {int} models.ClasificacionNivelIdioma
-// @Failure 403 body is empty
+// @Failure 400 the request contains incorrect syntax
 // @router / [post]
 func (c *ClasificacionNivelIdiomaController) Post() {
 	var v models.ClasificacionNivelIdioma
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if _, err := models.AddClasificacionNivelIdioma(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
-			c.Data["json"] = models.Alert{Type: "success", Code: "S_201", Body: v}
-			//c.Ctx.Output.SetStatus(201)
-			//c.Data["json"] = v
+			c.Data["json"] = v
 		} else {
-			alertdb := structs.Map(err)
-			var code string
-			formatdata.FillStruct(alertdb["Code"], &code)
-			alert := models.Alert{Type: "error", Code: "E_" + code, Body: err.Error()}
-			c.Data["json"] = alert
-			//c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
+			beego.Error(err)
+			//c.Data["development"] = map[string]interface{}{"Code": "400", "Body": err.Error(), "Type": "error"}
+			c.Data["system"] = err
+			c.Abort("400")
 		}
 	} else {
-		c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
-		//c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
+		beego.Error(err)
+		//c.Data["development"] = map[string]interface{}{"Code": "400", "Body": err.Error(), "Type": "error"}
+		c.Data["system"] = err
+		c.Abort("400")
 	}
 	c.ServeJSON()
 }
 
-// @Title Get
+// GetOne ...
+// @Title Get One
 // @Description get ClasificacionNivelIdioma by id
 // @Param	id		path 	string	true		"The key for staticblock"
 // @Success 200 {object} models.ClasificacionNivelIdioma
-// @Failure 403 :id is empty
+// @Failure 404 not found resource
 // @router /:id [get]
 func (c *ClasificacionNivelIdiomaController) GetOne() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
 	v, err := models.GetClasificacionNivelIdiomaById(id)
 	if err != nil {
-		c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
-		//c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
+		beego.Error(err)
+		//c.Data["development"] = map[string]interface{}{"Code": "404", "Body": err.Error(), "Type": "error"}
+		c.Data["system"] = err
+		c.Abort("404")
 	} else {
 		c.Data["json"] = v
 	}
 	c.ServeJSON()
 }
 
+// GetAll ...
 // @Title Get All
 // @Description get ClasificacionNivelIdioma
 // @Param	query	query	string	false	"Filter. e.g. col1:v1,col2:v2 ..."
@@ -81,15 +82,15 @@ func (c *ClasificacionNivelIdiomaController) GetOne() {
 // @Param	limit	query	string	false	"Limit the size of result set. Must be an integer"
 // @Param	offset	query	string	false	"Start position of result set. Must be an integer"
 // @Success 200 {object} models.ClasificacionNivelIdioma
-// @Failure 403
+// @Failure 404 not found resource
 // @router / [get]
 func (c *ClasificacionNivelIdiomaController) GetAll() {
 	var fields []string
 	var sortby []string
 	var order []string
-	var query map[string]string = make(map[string]string)
+	var query = make(map[string]string)
 	var limit int64 = 10
-	var offset int64 = 0
+	var offset int64
 
 	// fields: col1,col2,entity.col3
 	if v := c.GetString("fields"); v != "" {
@@ -117,7 +118,6 @@ func (c *ClasificacionNivelIdiomaController) GetAll() {
 			kv := strings.SplitN(cond, ":", 2)
 			if len(kv) != 2 {
 				c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: "Error: invalid query key/value pair"}
-				//c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: "Error: invalid query key/value pair"}
 				c.ServeJSON()
 				return
 			}
@@ -128,20 +128,26 @@ func (c *ClasificacionNivelIdiomaController) GetAll() {
 
 	l, err := models.GetAllClasificacionNivelIdioma(query, fields, sortby, order, offset, limit)
 	if err != nil {
-		c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
-		//c.Data["json"] = err.Error()
+		beego.Error(err)
+		//c.Data["development"] = map[string]interface{}{"Code": "404", "Body": err.Error(), "Type": "error"}
+		c.Data["system"] = err
+		c.Abort("404")
 	} else {
+		if l == nil {
+			l = append(l, map[string]interface{}{})
+		}
 		c.Data["json"] = l
 	}
 	c.ServeJSON()
 }
 
-// @Title Update
+// Put ...
+// @Title Put
 // @Description update the ClasificacionNivelIdioma
 // @Param	id		path 	string	true		"The id you want to update"
 // @Param	body		body 	models.ClasificacionNivelIdioma	true		"body for ClasificacionNivelIdioma content"
 // @Success 200 {object} models.ClasificacionNivelIdioma
-// @Failure 403 :id is not int
+// @Failure 400 the request contains incorrect syntax
 // @router /:id [put]
 func (c *ClasificacionNivelIdiomaController) Put() {
 	idStr := c.Ctx.Input.Param(":id")
@@ -150,35 +156,39 @@ func (c *ClasificacionNivelIdiomaController) Put() {
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if err := models.UpdateClasificacionNivelIdiomaById(&v); err == nil {
 			c.Ctx.Output.SetStatus(200)
-			c.Data["json"] = models.Alert{Type: "success", Code: "S_200", Body: v}
-			//c.Data["json"] = models.Alert{Type: "success", Code: "200", Body: "OK"}
+			c.Data["json"] = v
 		} else {
-			alertdb := structs.Map(err)
-			var code string
-			formatdata.FillStruct(alertdb["Code"], &code)
-			alert := models.Alert{Type: "error", Code: "E_" + code, Body: err.Error()}
-			c.Data["json"] = alert
-			//c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
+			beego.Error(err)
+			//c.Data["development"] = map[string]interface{}{"Code": "400", "Body": err.Error(), "Type": "error"}
+			c.Data["System"] = err
+			c.Abort("400")
 		}
 	} else {
-		c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
+		beego.Error(err)
+		//c.Data["development"] = map[string]interface{}{"Code": "400", "Body": err.Error(), "Type": "error"}
+		c.Data["System"] = err
+		c.Abort("400")
 	}
 	c.ServeJSON()
 }
 
+// Delete ...
 // @Title Delete
 // @Description delete the ClasificacionNivelIdioma
 // @Param	id		path 	string	true		"The id you want to delete"
 // @Success 200 {string} delete success!
-// @Failure 403 id is empty
+// @Failure 404 not found resource
 // @router /:id [delete]
 func (c *ClasificacionNivelIdiomaController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
 	if err := models.DeleteClasificacionNivelIdioma(id); err == nil {
-		c.Data["json"] = models.Alert{Type: "success", Code: "200", Body: "OK"}
+		c.Data["json"] = map[string]interface{}{"Id": id}
 	} else {
-		c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
+		beego.Error(err)
+		//c.Data["development"] = map[string]interface{}{"Code": "404", "Body": err.Error(), "Type": "error"}
+		c.Data["System"] = err
+		c.Abort("404")
 	}
 	c.ServeJSON()
 }
