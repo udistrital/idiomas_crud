@@ -5,16 +5,19 @@ import (
 	"fmt"
 	"reflect"
 	"strings"
+	"time"
 
 	"github.com/astaxie/beego/orm"
 )
 
 type SoporteConocimientoIdioma struct {
-	Id                 int                 `orm:"column(id);pk;auto"`
-	Institucion        int                 `orm:"column(institucion)"`
-	Documento          int                 `orm:"column(documento)"`
-	Descripcion        string              `orm:"column(descripcion);null"`
-	ConocimientoIdioma *ConocimientoIdioma `orm:"column(conocimiento_idioma);rel(fk)"`
+	Id                   int                 `orm:"column(id);pk;auto"`
+	Descripcion          string              `orm:"column(descripcion);null"`
+	FechaCreacion        time.Time           `orm:"column(fecha_creacion);type(timestamp without time zone);null"`
+	FechaModificacion    time.Time           `orm:"column(fecha_modificacion);type(timestamp without time zone);null"`
+	TercerosId           int                 `orm:"column(terceros_id)"`
+	DocumentoId          int                 `orm:"column(documento_id)"`
+	ConocimientoIdiomaId *ConocimientoIdioma `orm:"column(conocimiento_idioma_id);rel(fk)"`
 }
 
 func (t *SoporteConocimientoIdioma) TableName() string {
@@ -49,12 +52,16 @@ func GetSoporteConocimientoIdiomaById(id int) (v *SoporteConocimientoIdioma, err
 func GetAllSoporteConocimientoIdioma(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(SoporteConocimientoIdioma))
+	qs := o.QueryTable(new(SoporteConocimientoIdioma)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
 		k = strings.Replace(k, ".", "__", -1)
-		qs = qs.Filter(k, v)
+		if strings.Contains(k, "isnull") {
+			qs = qs.Filter(k, (v == "true" || v == "1"))
+		} else {
+			qs = qs.Filter(k, v)
+		}
 	}
 	// order by:
 	var sortFields []string

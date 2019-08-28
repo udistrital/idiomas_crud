@@ -5,20 +5,23 @@ import (
 	"fmt"
 	"reflect"
 	"strings"
+	"time"
 
 	"github.com/astaxie/beego/orm"
 )
 
 type ConocimientoIdioma struct {
-	Id                       int                       `orm:"column(id);pk;auto"`
-	Persona                  int                       `orm:"column(persona)"`
-	Idioma                   *Idioma                   `orm:"column(idioma);rel(fk)"`
-	NivelLee                 *ValorNivelIdioma         `orm:"column(nivel_lee);rel(fk)"`
-	NivelEscribe             *ValorNivelIdioma         `orm:"column(nivel_escribe);rel(fk)"`
-	NivelEscucha             *ValorNivelIdioma         `orm:"column(nivel_escucha);rel(fk)"`
-	NivelHabla               *ValorNivelIdioma         `orm:"column(nivel_habla);rel(fk)"`
-	Nativo                   bool                      `orm:"column(nativo)"`
-	ClasificacionNivelIdioma *ClasificacionNivelIdioma `orm:"column(clasificacion_nivel_idioma);rel(fk)"`
+	Id                int               `orm:"column(id);pk;auto"`
+	TercerosId        int               `orm:"column(terceros_id)"`
+	IdiomaId          *Idioma           `orm:"column(idioma_id);rel(fk)"`
+	Nativo            bool              `orm:"column(nativo)"`
+	NivelId           *Nivel            `orm:"column(nivel_id);rel(fk)"`
+	NivelLeeId        *ValorNivelIdioma `orm:"column(nivel_lee_id);rel(fk)"`
+	NivelEscribeId    *ValorNivelIdioma `orm:"column(nivel_escribe_id);rel(fk)"`
+	NivelEscuchaId    *ValorNivelIdioma `orm:"column(nivel_escucha_id);rel(fk)"`
+	NivelHablaId      *ValorNivelIdioma `orm:"column(nivel_habla_id);rel(fk)"`
+	FechaCreacion     time.Time         `orm:"column(fecha_creacion);type(timestamp without time zone);null"`
+	FechaModificacion time.Time         `orm:"column(fecha_modificacion);type(timestamp without time zone);null"`
 }
 
 func (t *ConocimientoIdioma) TableName() string {
@@ -53,12 +56,16 @@ func GetConocimientoIdiomaById(id int) (v *ConocimientoIdioma, err error) {
 func GetAllConocimientoIdioma(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(ConocimientoIdioma))
+	qs := o.QueryTable(new(ConocimientoIdioma)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
 		k = strings.Replace(k, ".", "__", -1)
-		qs = qs.Filter(k, v)
+		if strings.Contains(k, "isnull") {
+			qs = qs.Filter(k, (v == "true" || v == "1"))
+		} else {
+			qs = qs.Filter(k, v)
+		}
 	}
 	// order by:
 	var sortFields []string

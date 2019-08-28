@@ -3,19 +3,19 @@ package controllers
 import (
 	"encoding/json"
 	"errors"
+	"github.com/udistrital/idiomas_crud/models"
 	"strconv"
 	"strings"
-
-	"github.com/udistrital/idiomas_crud/models"
 
 	"github.com/astaxie/beego"
 )
 
-// oprations for ConocimientoIdioma
+// ConocimientoIdiomaController operations for ConocimientoIdioma
 type ConocimientoIdiomaController struct {
 	beego.Controller
 }
 
+// URLMapping ...
 func (c *ConocimientoIdiomaController) URLMapping() {
 	c.Mapping("Post", c.Post)
 	c.Mapping("GetOne", c.GetOne)
@@ -24,6 +24,7 @@ func (c *ConocimientoIdiomaController) URLMapping() {
 	c.Mapping("Delete", c.Delete)
 }
 
+// Post ...
 // @Title Post
 // @Description create ConocimientoIdioma
 // @Param	body		body 	models.ConocimientoIdioma	true		"body for ConocimientoIdioma content"
@@ -45,7 +46,8 @@ func (c *ConocimientoIdiomaController) Post() {
 	c.ServeJSON()
 }
 
-// @Title Get
+// GetOne ...
+// @Title Get One
 // @Description get ConocimientoIdioma by id
 // @Param	id		path 	string	true		"The key for staticblock"
 // @Success 200 {object} models.ConocimientoIdioma
@@ -63,6 +65,7 @@ func (c *ConocimientoIdiomaController) GetOne() {
 	c.ServeJSON()
 }
 
+// GetAll ...
 // @Title Get All
 // @Description get ConocimientoIdioma
 // @Param	query	query	string	false	"Filter. e.g. col1:v1,col2:v2 ..."
@@ -78,9 +81,9 @@ func (c *ConocimientoIdiomaController) GetAll() {
 	var fields []string
 	var sortby []string
 	var order []string
-	var query map[string]string = make(map[string]string)
+	var query = make(map[string]string)
 	var limit int64 = 10
-	var offset int64 = 0
+	var offset int64
 
 	// fields: col1,col2,entity.col3
 	if v := c.GetString("fields"); v != "" {
@@ -125,7 +128,8 @@ func (c *ConocimientoIdiomaController) GetAll() {
 	c.ServeJSON()
 }
 
-// @Title Update
+// Put ...
+// @Title Put
 // @Description update the ConocimientoIdioma
 // @Param	id		path 	string	true		"The id you want to update"
 // @Param	body		body 	models.ConocimientoIdioma	true		"body for ConocimientoIdioma content"
@@ -148,6 +152,7 @@ func (c *ConocimientoIdiomaController) Put() {
 	c.ServeJSON()
 }
 
+// Delete ...
 // @Title Delete
 // @Description delete the ConocimientoIdioma
 // @Param	id		path 	string	true		"The id you want to delete"

@@ -3,19 +3,19 @@ package controllers
 import (
 	"encoding/json"
 	"errors"
+	"github.com/udistrital/idiomas_crud/models"
 	"strconv"
 	"strings"
-
-	"github.com/udistrital/idiomas_crud/models"
 
 	"github.com/astaxie/beego"
 )
 
-// oprations for Idioma
+// IdiomaController operations for Idioma
 type IdiomaController struct {
 	beego.Controller
 }
 
+// URLMapping ...
 func (c *IdiomaController) URLMapping() {
 	c.Mapping("Post", c.Post)
 	c.Mapping("GetOne", c.GetOne)
@@ -24,6 +24,7 @@ func (c *IdiomaController) URLMapping() {
 	c.Mapping("Delete", c.Delete)
 }
 
+// Post ...
 // @Title Post
 // @Description create Idioma
 // @Param	body		body 	models.Idioma	true		"body for Idioma content"
@@ -45,7 +46,8 @@ func (c *IdiomaController) Post() {
 	c.ServeJSON()
 }
 
-// @Title Get
+// GetOne ...
+// @Title Get One
 // @Description get Idioma by id
 // @Param	id		path 	string	true		"The key for staticblock"
 // @Success 200 {object} models.Idioma
@@ -63,6 +65,7 @@ func (c *IdiomaController) GetOne() {
 	c.ServeJSON()
 }
 
+// GetAll ...
 // @Title Get All
 // @Description get Idioma
 // @Param	query	query	string	false	"Filter. e.g. col1:v1,col2:v2 ..."
@@ -78,9 +81,9 @@ func (c *IdiomaController) GetAll() {
 	var fields []string
 	var sortby []string
 	var order []string
-	var query map[string]string = make(map[string]string)
+	var query = make(map[string]string)
 	var limit int64 = 10
-	var offset int64 = 0
+	var offset int64
 
 	// fields: col1,col2,entity.col3
 	if v := c.GetString("fields"); v != "" {
@@ -125,7 +128,8 @@ func (c *IdiomaController) GetAll() {
 	c.ServeJSON()
 }
 
-// @Title Update
+// Put ...
+// @Title Put
 // @Description update the Idioma
 // @Param	id		path 	string	true		"The id you want to update"
 // @Param	body		body 	models.Idioma	true		"body for Idioma content"
@@ -148,6 +152,7 @@ func (c *IdiomaController) Put() {
 	c.ServeJSON()
 }
 
+// Delete ...
 // @Title Delete
 // @Description delete the Idioma
 // @Param	id		path 	string	true		"The id you want to delete"
