@@ -1,5 +1,12 @@
 {
-  "Type": "error",
-  "Code": "E_400",
-  "Body": "unexpected end of JSON input"
+  "Development": null,
+  "Message": "The request contains incorrect syntax",
+  "Status": "400",
+  "System": {
+    "Value": "string",
+    "Type": {},
+    "Offset": 105,
+    "Struct": "ClasificacionNivelIdioma",
+    "Field": "NumeroOrden"
+  }
 }

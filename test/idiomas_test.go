@@ -26,6 +26,12 @@ import (
 // @resStatus codigo de respuesta a las solicitudes a la api
 var resStatus string
 
+// @resDuplex JSON repuesta Duplicacion
+var resDuplex string
+
+// @resDelete JSON repuesta Delete
+var resDelete string
+
 //@resBody JSON de respuesta a las solicitudesde la api
 var resBody []byte
 
@@ -40,6 +46,8 @@ type Parametrica struct {
 	CodigoAbreviacion string
 	Activo            bool
 	NumeroOrden       float64
+	FechaCreacion     time.Time
+	FechaModificacion time.Time
 }
 
 //@opt opciones de godog
@@ -62,7 +70,6 @@ func TestMain(m *testing.M) {
 		status = st
 	}
 	os.Exit(status)
-
 }
 
 //@init inicia la aplicacion para realizar los test
@@ -71,7 +78,6 @@ func init() {
 	run_bee()
 	//pasa las banderas al comando godog
 	godog.BindFlags("godog.", flag.CommandLine, &opt)
-
 }
 
 //@gen_files genera los archivos de ejemplos
@@ -85,6 +91,8 @@ func gen_files() {
 		CodigoAbreviacion: "string",
 		Activo:            true,
 		NumeroOrden:       0,
+		FechaCreacion:     t,
+		FechaModificacion: t,
 	}
 	rankingsJson, _ := json.Marshal(atributo)
 	ioutil.WriteFile("./files/req/Yt1.json", rankingsJson, 0644)
@@ -92,8 +100,7 @@ func gen_files() {
 
 //@run_bee activa el servicio de la api para realizar los test
 func run_bee() {
-
-	parametros := "DOCUMENTOS_HTTP_PORT=" + beego.AppConfig.String("httpport") + " IDIOMAS_CRUD__PGUSER=" + beego.AppConfig.String("PGuser") + " IDIOMAS_CRUD__PGPASS=" + beego.AppConfig.String("PGpass") + " IDIOMAS_CRUD__PGURLS=" + beego.AppConfig.String("PGurls") + " IDIOMAS_CRUD__PGDB=" + beego.AppConfig.String("PGdb") + " IDIOMAS_CRUD__SCHEMA=" + beego.AppConfig.String("PGschemas") + " bee run"
+	parametros := "IDIOMAS_CRUD_HTTP_PORT=" + beego.AppConfig.String("httpport") + " IDIOMAS_CRUD__PGUSER=" + beego.AppConfig.String("PGuser") + " IDIOMAS_CRUD__PGPASS=" + beego.AppConfig.String("PGpass") + " IDIOMAS_CRUD__PGURLS=" + beego.AppConfig.String("PGurls") + " IDIOMAS_CRUD__PGDB=" + beego.AppConfig.String("PGdb") + " IDIOMAS_CRUD__SCHEMA=" + beego.AppConfig.String("PGschemas") + " bee run"
 	file, err := os.Create("script.sh")
 	if err != nil {
 		log.Fatal("Cannot create file", err)
@@ -119,7 +126,6 @@ func deleteFile(path string) {
 	if err != nil {
 		fmt.Errorf("no se pudo eliminar el archivo")
 	}
-
 }
 
 //@exe_cmd ejecuta comandos en la terminal
@@ -179,24 +185,28 @@ func getPages(ruta string) []byte {
 
 //@iSendRequestToWhereBodyIsJson realiza la solicitud a la API
 func iSendRequestToWhereBodyIsJson(method, endpoint, bodyreq string) error {
-
 	var url string
 
 	if method == "GET" || method == "POST" {
 		url = "http://localhost:" + beego.AppConfig.String("httpport") + endpoint
-
 	} else {
 		if method == "PUT" || method == "DELETE" {
-			str := strconv.FormatFloat(Id, 'f', 5, 64)
+			str := strconv.FormatFloat(Id, 'f', 0, 64)
 			url = "http://localhost:" + beego.AppConfig.String("httpport") + endpoint + "/" + str
-
 		}
 	}
 	if method == "GETID" {
 		method = "GET"
-		str := strconv.FormatFloat(Id, 'f', 5, 64)
+		str := strconv.FormatFloat(Id, 'f', 0, 64)
 		url = "http://localhost:" + beego.AppConfig.String("httpport") + endpoint + "/" + str
-
+	}
+	if method == "DELETE" {
+		str := strconv.FormatFloat(Id, 'f', 0, 64)
+		url = "http://localhost:" + beego.AppConfig.String("httpport") + endpoint + "/" + str
+		resDelete = "{\"Id\":" + str + "}"
+		ioutil.WriteFile("./files/res1/Ino.json", []byte(resDelete), 0644)
+		ioutil.WriteFile("./files/res3/Ino.json", []byte(resDelete), 0644)
+		ioutil.WriteFile("./files/res5/Ino.json", []byte(resDelete), 0644)
 	}
 
 	pages := getPages(bodyreq)
@@ -221,9 +231,31 @@ func iSendRequestToWhereBodyIsJson(method, endpoint, bodyreq string) error {
 		json.Unmarshal([]byte(bodyr), &savepostres)
 		Id = savepostres["Id"].(float64)
 
+		resDuplex = "{\r\n\t\"Development\": null,\r\n\t\"Message\": \"The request contains incorrect syntax\",\r\n\t\"Status\": \"400\",\r\n\t\"System\": {\r\n"
+		resDuplex = resDuplex + "\t\t\"Severity\": \"ERROR\",\r\n\t\t\"Code\": \"23505\",\r\n\t\t\"Message\": \"llave duplicada viola restricción de unicidad «pk_clasificacion_nivel_idioma»\",\r\n"
+		resDuplex = resDuplex + "\t\t\"Detail\": \"Ya existe la llave (id)=(" + strconv.Itoa(int(Id)) + ").\",\r\n\t\t\"Hint\": \"\",\r\n\t\t\"Position\": \"\",\r\n\t\t\"InternalPosition\": \"\",\r\n"
+		resDuplex = resDuplex + "\t\t\"InternalQuery\": \"\",\r\n\t\t\"Where\": \"\",\r\n\t\t\"Schema\": \"idiomas\",\r\n\t\t\"Table\": \"clasificacion_nivel_idioma\",\r\n\t\t\"Column\": \"\",\r\n"
+		resDuplex = resDuplex + "\t\t\"DataTypeName\": \"\",\r\n\t\t\"Constraint\": \"pk_clasificacion_nivel_idioma\",\r\n\t\t\"File\": \"nbtinsert.c\",\r\n\t\t\"Line\": \"434\",\r\n\t\t\"Routine\": \"_bt_check_unique\"\r\n\t}\r\n}"
+
+		ioutil.WriteFile("./files/res1/Ierr8.json", []byte(resDuplex), 0644)
+
+		resDuplex = "{\r\n\t\"Development\": null,\r\n\t\"Message\": \"The request contains incorrect syntax\",\r\n\t\"Status\": \"400\",\r\n\t\"System\": {\r\n"
+		resDuplex = resDuplex + "\t\t\"Severity\": \"ERROR\",\r\n\t\t\"Code\": \"23505\",\r\n\t\t\"Message\": \"llave duplicada viola restricción de unicidad «pk_idioma»\",\r\n"
+		resDuplex = resDuplex + "\t\t\"Detail\": \"Ya existe la llave (id)=(" + strconv.Itoa(int(Id)) + ").\",\r\n\t\t\"Hint\": \"\",\r\n\t\t\"Position\": \"\",\r\n\t\t\"InternalPosition\": \"\",\r\n"
+		resDuplex = resDuplex + "\t\t\"InternalQuery\": \"\",\r\n\t\t\"Where\": \"\",\r\n\t\t\"Schema\": \"idiomas\",\r\n\t\t\"Table\": \"idioma\",\r\n\t\t\"Column\": \"\",\r\n"
+		resDuplex = resDuplex + "\t\t\"DataTypeName\": \"\",\r\n\t\t\"Constraint\": \"pk_idioma\",\r\n\t\t\"File\": \"nbtinsert.c\",\r\n\t\t\"Line\": \"434\",\r\n\t\t\"Routine\": \"_bt_check_unique\"\r\n\t}\r\n}"
+
+		ioutil.WriteFile("./files/res3/Ierr8.json", []byte(resDuplex), 0644)
+
+		resDuplex = "{\r\n\t\"Development\": null,\r\n\t\"Message\": \"The request contains incorrect syntax\",\r\n\t\"Status\": \"400\",\r\n\t\"System\": {\r\n"
+		resDuplex = resDuplex + "\t\t\"Severity\": \"ERROR\",\r\n\t\t\"Code\": \"23505\",\r\n\t\t\"Message\": \"llave duplicada viola restricción de unicidad «pk_valor_nivel_idioma»\",\r\n"
+		resDuplex = resDuplex + "\t\t\"Detail\": \"Ya existe la llave (id)=(" + strconv.Itoa(int(Id)) + ").\",\r\n\t\t\"Hint\": \"\",\r\n\t\t\"Position\": \"\",\r\n\t\t\"InternalPosition\": \"\",\r\n"
+		resDuplex = resDuplex + "\t\t\"InternalQuery\": \"\",\r\n\t\t\"Where\": \"\",\r\n\t\t\"Schema\": \"idiomas\",\r\n\t\t\"Table\": \"valor_nivel_idioma\",\r\n\t\t\"Column\": \"\",\r\n"
+		resDuplex = resDuplex + "\t\t\"DataTypeName\": \"\",\r\n\t\t\"Constraint\": \"pk_valor_nivel_idioma\",\r\n\t\t\"File\": \"nbtinsert.c\",\r\n\t\t\"Line\": \"434\",\r\n\t\t\"Routine\": \"_bt_check_unique\"\r\n\t}\r\n}"
+
+		ioutil.WriteFile("./files/res5/Ierr8.json", []byte(resDuplex), 0644)
 	}
 	return nil
-
 }
 
 //@theResponseCodeShouldBe valida el codigo de respuesta

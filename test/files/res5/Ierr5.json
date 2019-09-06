@@ -6,7 +6,7 @@
     "Value": "string",
     "Type": {},
     "Offset": 85,
-    "Struct": "ClasificacionNivelIdioma",
+    "Struct": "ValorNivelIdioma",
     "Field": "Activo"
   }
 }

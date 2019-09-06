@@ -3,10 +3,10 @@
   "Message": "The request contains incorrect syntax",
   "Status": "400",
   "System": {
-    "Value": "string",
+    "Value": "number",
     "Type": {},
-    "Offset": 85,
-    "Struct": "ClasificacionNivelIdioma",
-    "Field": "Activo"
+    "Offset": 63,
+    "Struct": "Idioma",
+    "Field": "CodigoAbreviacion"
   }
 }

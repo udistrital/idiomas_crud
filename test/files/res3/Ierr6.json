@@ -5,8 +5,8 @@
   "System": {
     "Value": "string",
     "Type": {},
-    "Offset": 85,
-    "Struct": "ClasificacionNivelIdioma",
-    "Field": "Activo"
+    "Offset": 105,
+    "Struct": "Idioma",
+    "Field": "NumeroOrden"
   }
 }
