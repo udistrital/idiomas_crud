@@ -18,22 +18,22 @@ pipeline:
    # run beego migration
   beego_migrate:
     image: golang:1.9
-    secrets: [ pg_core_url, pg_core_user, pg_core_password, pg_core_dbname]
+    secrets: [ pg_migration_url, pg_migration_user, pg_migration_pass, pg_migration_dbname]
     commands:
      - go get -t
      - go get -u github.com/beego/bee
-     - bee migrate -driver=postgres -conn="postgres://$${PG_CORE_USER}:$${PG_CORE_PASSWORD}@$${PG_CORE_URL}:5432/$${PG_CORE_DBNAME}?sslmode=disable"
+     - bee migrate -driver=postgres -conn="postgres://$${PG_MIGRATION_USER}:$${PG_MIGRATION_PASS}@$${PG_MIGRATION_URL}:5432/$${PG_MIGRATION_DBNAME}?sslmode=disable"
     when:
       branch: [test]
 
   # rollback beego migration if it fails
   beego_rollback:
     image: golang:1.9
-    secrets: [ pg_core_url, pg_core_user, pg_core_password, pg_core_dbname]
+    secrets: [ pg_migration_url, pg_migration_user, pg_migration_pass, pg_migration_dbname]
     commands:
      - go get -t
      - go get -u github.com/beego/bee
-     - bee migrate rollback -driver=postgres -conn="postgres://$${PG_CORE_USER}:$${PG_CORE_PASSWORD}@$${PG_CORE_URL}:5432/$${PG_CORE_DBNAME}?sslmode=disable"
+     - bee migrate rollback -driver=postgres -conn="postgres://$${PG_MIGRATION_USER}:$${PG_MIGRATION_PASS}@$${PG_MIGRATION_URL}:5432/$${PG_MIGRATION_DBNAME}?sslmode=disable"
     when:
       status: [failure]
       branch: [test]
