@@ -5,7 +5,6 @@ workspace:
     branch: [master, test]
     
 pipeline:
-
   
   # build and test the go program
   go:
