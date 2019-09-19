@@ -4,8 +4,8 @@ workspace:
   when:
     branch: [master, test]
     event: push #--
-    
-pipeline:  
+
+pipeline:
   # build and test the go program
   go:
     image: golang:1.9
