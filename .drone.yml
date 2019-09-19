@@ -67,6 +67,7 @@ pipeline:
             ;;
        esac
      - AWS_REGION=us-east-1
+     - CLUSTER=oas   #--
      - SERVICE=${DRONE_REPO##udistrital/}_$AMBIENTE
      - MYCONTAINER=oas0/${DRONE_REPO##udistrital/}:${DRONE_COMMIT:0:7}
      - container_name=${DRONE_REPO##udistrital/}
