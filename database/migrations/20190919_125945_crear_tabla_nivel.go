@@ -5,20 +5,20 @@ import (
 )
 
 // DO NOT MODIFY
-type CrearTablaNivel_20190827_092656 struct {
+type CrearTablaNivel_20190919_125945 struct {
 	migration.Migration
 }
 
 // DO NOT MODIFY
 func init() {
-	m := &CrearTablaNivel_20190827_092656{}
-	m.Created = "20190827_092656"
+	m := &CrearTablaNivel_20190919_125945{}
+	m.Created = "20190919_125945"
 
-	migration.Register("CrearTablaNivel_20190827_092656", m)
+	migration.Register("CrearTablaNivel_20190919_125945", m)
 }
 
 // Run the migrations
-func (m *CrearTablaNivel_20190827_092656) Up() {
+func (m *CrearTablaNivel_20190919_125945) Up() {
 	// use m.SQL("CREATE TABLE ...") to make schema update
 	m.SQL("CREATE TABLE IF NOT EXISTS idiomas.nivel( id serial NOT NULL, nombre character varying(100) NOT NULL, descripcion character varying(100), codigo_abreviacion character varying(20), activo boolean NOT NULL, numero_orden numeric(5,2), fecha_creacion TIMESTAMP, fecha_modificacion TIMESTAMP, CONSTRAINT pk_nivel PRIMARY KEY (id), CONSTRAINT unique_nombre_nivel UNIQUE (nombre) );")
 	m.SQL("ALTER TABLE idiomas.nivel OWNER TO desarrollooas;")
@@ -34,7 +34,7 @@ func (m *CrearTablaNivel_20190827_092656) Up() {
 }
 
 // Reverse the migrations
-func (m *CrearTablaNivel_20190827_092656) Down() {
+func (m *CrearTablaNivel_20190919_125945) Down() {
 	// use m.SQL("DROP TABLE ...") to reverse schema update
 	m.SQL("DROP TABLE IF EXISTS idiomas.nivel")
 }

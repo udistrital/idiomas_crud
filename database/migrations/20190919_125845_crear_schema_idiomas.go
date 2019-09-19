@@ -5,29 +5,28 @@ import (
 )
 
 // DO NOT MODIFY
-type CrearSchemaIdiomasCrud_20190827_091707 struct {
+type CrearSchemaIdiomas_20190919_125845 struct {
 	migration.Migration
 }
 
 // DO NOT MODIFY
 func init() {
-	m := &CrearSchemaIdiomasCrud_20190827_091707{}
-	m.Created = "20190827_091707"
+	m := &CrearSchemaIdiomas_20190919_125845{}
+	m.Created = "20190919_125845"
 
-	migration.Register("CrearSchemaIdiomasCrud_20190827_091707", m)
+	migration.Register("CrearSchemaIdiomas_20190919_125845", m)
 }
 
 // Run the migrations
-func (m *CrearSchemaIdiomasCrud_20190827_091707) Up() {
+func (m *CrearSchemaIdiomas_20190919_125845) Up() {
 	// use m.SQL("CREATE TABLE ...") to make schema update
 	m.SQL("CREATE SCHEMA IF NOT EXISTS idiomas;")
 	m.SQL("ALTER SCHEMA idiomas OWNER TO desarrollooas;")
 	m.SQL("SET search_path TO pg_catalog,public,idiomas;")
-	
 }
 
 // Reverse the migrations
-func (m *CrearSchemaIdiomasCrud_20190827_091707) Down() {
+func (m *CrearSchemaIdiomas_20190919_125845) Down() {
 	// use m.SQL("DROP TABLE ...") to reverse schema update
 	m.SQL("DROP SCHEMA IF EXISTS idiomas");
 }
