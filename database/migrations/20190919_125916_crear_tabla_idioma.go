@@ -5,20 +5,20 @@ import (
 )
 
 // DO NOT MODIFY
-type CrearTablaIdioma_20190827_091952 struct {
+type CrearTablaIdioma_20190919_125916 struct {
 	migration.Migration
 }
 
 // DO NOT MODIFY
 func init() {
-	m := &CrearTablaIdioma_20190827_091952{}
-	m.Created = "20190827_091952"
+	m := &CrearTablaIdioma_20190919_125916{}
+	m.Created = "20190919_125916"
 
-	migration.Register("CrearTablaIdioma_20190827_091952", m)
+	migration.Register("CrearTablaIdioma_20190919_125916", m)
 }
 
 // Run the migrations
-func (m *CrearTablaIdioma_20190827_091952) Up() {
+func (m *CrearTablaIdioma_20190919_125916) Up() {
 	// use m.SQL("CREATE TABLE ...") to make schema update
 	m.SQL("CREATE TABLE IF NOT EXISTS idiomas.idioma( id serial NOT NULL, nombre character varying(100) NOT NULL, descripcion character varying(100), codigo_abreviacion character varying(20), activo boolean NOT NULL, numero_orden numeric(5,2), fecha_creacion TIMESTAMP, fecha_modificacion TIMESTAMP, CONSTRAINT pk_idioma PRIMARY KEY (id), CONSTRAINT unique_nombre_idioma UNIQUE (nombre));")
 	m.SQL("ALTER TABLE idiomas.idioma OWNER TO desarrollooas;")
@@ -34,7 +34,7 @@ func (m *CrearTablaIdioma_20190827_091952) Up() {
 }
 
 // Reverse the migrations
-func (m *CrearTablaIdioma_20190827_091952) Down() {
+func (m *CrearTablaIdioma_20190919_125916) Down() {
 	// use m.SQL("DROP TABLE ...") to reverse schema update
 	m.SQL("DROP TABLE IF EXISTS idiomas.idioma")
 }
