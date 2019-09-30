@@ -3,6 +3,8 @@
 
 API CRUD para la gestión del conocimiento en idiomas con el que cuentan las personas relacionadas a la Universidad Distrital. El proyecto está escrito en el lenguaje GO, generado mediante el framework beego.
 
+
+
 ## Modelo de datos
 ![Modelo de datos idiomas](https://github.com/udistrital/idiomas_crud/blob/dev/sql/idiomas_crud.png?raw=true)
 
