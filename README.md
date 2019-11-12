@@ -1,4 +1,4 @@
-# IDIOMAS_CRUD
+# :speech_balloon: IDIOMAS CRUD
 
 
 API CRUD para la gestión del conocimiento en idiomas con el que cuentan las personas relacionadas a la Universidad Distrital. El proyecto está escrito en el lenguaje GO, generado mediante el framework beego.
