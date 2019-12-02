@@ -14,7 +14,29 @@ import (
 )
 
 func init() {
-	ns := beego.NewNamespace("/v1",
+
+	ns1 := beego.NewNamespace("/v1",
+
+		beego.NSNamespace("/idioma",
+			beego.NSInclude(
+				&controllers.IdiomaController{},
+			),
+		),
+		beego.NSNamespace("/clasificacion_nivel_idioma",
+			beego.NSInclude(
+				&controllers.NivelController{},
+			),
+		),
+
+		beego.NSNamespace("/valor_nivel_idioma",
+			beego.NSInclude(
+				&controllers.ValorNivelIdiomaController{},
+			),
+		),
+
+	)
+
+	ns2 := beego.NewNamespace("/v2",
 
 		beego.NSNamespace("/idioma",
 			beego.NSInclude(
@@ -46,5 +68,6 @@ func init() {
 			),
 		),
 	)
-	beego.AddNamespace(ns)
+	beego.AddNamespace(ns1)
+	beego.AddNamespace(ns2)
 }
