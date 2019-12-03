@@ -27,7 +27,7 @@ type SoporteConocimientoIdiomaV2 struct {
 	FechaModificacion    time.Time           `orm:"column(fecha_modificacion);type(timestamp without time zone);null"`
 	TercerosId           int                 `orm:"column(terceros_id)"`
 	DocumentoId          int                 `orm:"column(documento_id)"`
-	ConocimientoIdiomaId *ConocimientoIdioma `orm:"column(conocimiento_idioma_id);rel(fk)"`
+	ConocimientoIdiomaId *ConocimientoIdiomaV2 `orm:"column(conocimiento_idioma_id);rel(fk)"`
 }
 
 func (t *SoporteConocimientoIdiomaV2) TableName() string {

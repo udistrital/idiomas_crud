@@ -39,6 +39,12 @@ func init() {
 				&controllers.SoporteConocimientoIdiomaController{},
 			),
 		),
+
+		beego.NSNamespace("/conocimiento_idioma",
+			beego.NSInclude(
+				&controllers.ConocimientoIdiomaController{},
+			),
+		),
 	)
 
 	ns2 := beego.NewNamespace("/v2",
@@ -63,7 +69,7 @@ func init() {
 
 		beego.NSNamespace("/conocimiento_idioma",
 			beego.NSInclude(
-				&controllers.ConocimientoIdiomaController{},
+				&controllers.ConocimientoIdiomaV2Controller{},
 			),
 		),
 

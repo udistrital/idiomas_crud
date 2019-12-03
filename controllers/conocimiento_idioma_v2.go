@@ -5,20 +5,20 @@ import (
 	"errors"
 	"strconv"
 	"strings"
-	"time"
+
 	"github.com/udistrital/idiomas_crud/models"
 
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/logs"
 )
 
-// SoporteConocimientoIdiomaController operations for SoporteConocimientoIdioma
-type SoporteConocimientoIdiomaController struct {
+// ConocimientoIdiomaV2Controller operations for ConocimientoIdioma
+type ConocimientoIdiomaV2Controller struct {
 	beego.Controller
 }
 
 // URLMapping ...
-func (c *SoporteConocimientoIdiomaController) URLMapping() {
+func (c *ConocimientoIdiomaV2Controller) URLMapping() {
 	c.Mapping("Post", c.Post)
 	c.Mapping("GetOne", c.GetOne)
 	c.Mapping("GetAll", c.GetAll)
@@ -28,34 +28,15 @@ func (c *SoporteConocimientoIdiomaController) URLMapping() {
 
 // Post ...
 // @Title Post
-// @Description create SoporteConocimientoIdioma
-// @Param	body		body 	models.SoporteConocimientoIdioma	true		"body for SoporteConocimientoIdioma content"
-// @Success 201 {int} models.SoporteConocimientoIdioma
+// @Description create ConocimientoIdioma
+// @Param	body		body 	models.ConocimientoIdiomaV2	true		"body for ConocimientoIdioma content"
+// @Success 201 {int} models.ConocimientoIdiomaV2
 // @Failure 400 the request contains incorrect syntax
 // @router / [post]
-func (c *SoporteConocimientoIdiomaController) Post() {
-	var v models.SoporteConocimientoIdioma
-
+func (c *ConocimientoIdiomaV2Controller) Post() {
+	var v models.ConocimientoIdiomaV2
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		//-------------- Temporal: Cambio por transición ------- //
-		ci := &models.ConocimientoIdiomaV2 {
-			Id: v.ConocimientoIdioma.Id,
-		}
-		
-		layout := "2006-01-02"  //Cambiar si la hora que viene en string tiene otro formato
-		f_c, _ := time.Parse(layout, v.FechaCreacion)
-
-		temp := models.SoporteConocimientoIdiomaV2 {
-			Id  :   v.Id,          
-			Descripcion:  v.Descripcion,    
-			FechaCreacion :  f_c,   
-			FechaModificacion :  time.Now(),	
-			TercerosId: v.Institucion, 	
-			DocumentoId: v.Documento,
-			ConocimientoIdiomaId: ci,
-		}
-
-		if _, err := models.AddSoporteConocimientoIdioma(&temp); err == nil {
+		if _, err := models.AddConocimientoIdioma(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
 		} else {
@@ -75,62 +56,39 @@ func (c *SoporteConocimientoIdiomaController) Post() {
 
 // GetOne ...
 // @Title Get One
-// @Description get SoporteConocimientoIdioma by id
+// @Description get ConocimientoIdioma by id
 // @Param	id		path 	string	true		"The key for staticblock"
-// @Success 200 {object} models.SoporteConocimientoIdioma
+// @Success 200 {object} models.ConocimientoIdiomaV2
 // @Failure 404 not found resource
 // @router /:id [get]
-func (c *SoporteConocimientoIdiomaController) GetOne() {
+func (c *ConocimientoIdiomaV2Controller) GetOne() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v, err := models.GetSoporteConocimientoIdiomaById(id)
+	v, err := models.GetConocimientoIdiomaById(id)
 	if err != nil {
 		logs.Error(err)
 		//c.Data["development"] = map[string]interface{}{"Code": "000", "Body": err.Error(), "Type": "error"}
 		c.Data["system"] = err
 		c.Abort("404")
 	} else {
-
-		ci := &models.ConocimientoIdioma {
-			Id: v.ConocimientoIdiomaId.Id,
-			//NIVELES
-
-		}
-
-		f_c := v.FechaCreacion.String()
-		f_m := v.FechaModificacion.String()
-
-		temp := models.SoporteConocimientoIdioma {
-			Id  :   v.Id,          
-			Descripcion:  v.Descripcion,    
-			FechaCreacion : f_c,   
-			FechaModificacion :  f_m,	
-			Institucion: v.TercerosId, 	
-			Documento: v.DocumentoId,
-			ConocimientoIdioma: ci,
-
-		}
-	
-		c.Data["json"] = temp
-		//-------------- Temporal: Cambio por transición ------- //
-		//c.Data["json"] = v
+		c.Data["json"] = v
 	}
 	c.ServeJSON()
 }
 
 // GetAll ...
 // @Title Get All
-// @Description get SoporteConocimientoIdioma
+// @Description get ConocimientoIdioma
 // @Param	query	query	string	false	"Filter. e.g. col1:v1,col2:v2 ..."
 // @Param	fields	query	string	false	"Fields returned. e.g. col1,col2 ..."
 // @Param	sortby	query	string	false	"Sorted-by fields. e.g. col1,col2 ..."
 // @Param	order	query	string	false	"Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ..."
 // @Param	limit	query	string	false	"Limit the size of result set. Must be an integer"
 // @Param	offset	query	string	false	"Start position of result set. Must be an integer"
-// @Success 200 {object} models.SoporteConocimientoIdioma
+// @Success 200 {object} models.ConocimientoIdiomaV2
 // @Failure 404 not found resource
 // @router / [get]
-func (c *SoporteConocimientoIdiomaController) GetAll() {
+func (c *ConocimientoIdiomaV2Controller) GetAll() {
 	var fields []string
 	var sortby []string
 	var order []string
@@ -172,7 +130,7 @@ func (c *SoporteConocimientoIdiomaController) GetAll() {
 		}
 	}
 
-	l, err := models.GetAllSoporteConocimientoIdioma(query, fields, sortby, order, offset, limit)
+	l, err := models.GetAllConocimientoIdioma(query, fields, sortby, order, offset, limit)
 	if err != nil {
 		logs.Error(err)
 		//c.Data["development"] = map[string]interface{}{"Code": "000", "Body": err.Error(), "Type": "error"}
@@ -181,35 +139,6 @@ func (c *SoporteConocimientoIdiomaController) GetAll() {
 	} else {
 		if l == nil {
 			l = append(l, map[string]interface{}{})
-			c.Data["json"] = l
-		}else{
-			//-------------- Temporal: Cambio por transición ------- //
-			var temp []models.SoporteConocimientoIdioma
-			for _, i := range l {
-				field, _ := i.(models.SoporteConocimientoIdiomaV2)
-
-				ci := &models.ConocimientoIdioma {
-					Id: field.ConocimientoIdiomaId.Id,
-					//NIVELES
-		
-				}
-		
-				f_c := field.FechaCreacion.String()
-				f_m := field.FechaModificacion.String()
-
-				x := models.SoporteConocimientoIdioma {
-					Id  :   field.Id,          
-					Descripcion:  field.Descripcion,    
-					FechaCreacion : f_c,   
-					FechaModificacion :  f_m,	
-					Institucion: field.TercerosId, 	
-					Documento: field.DocumentoId,
-					ConocimientoIdioma: ci,
-		
-				}
-
-				temp = append(temp,x)
-			}
 		}
 		c.Data["json"] = l
 	}
@@ -218,36 +147,18 @@ func (c *SoporteConocimientoIdiomaController) GetAll() {
 
 // Put ...
 // @Title Put
-// @Description update the SoporteConocimientoIdioma
+// @Description update the ConocimientoIdioma
 // @Param	id		path 	string	true		"The id you want to update"
-// @Param	body		body 	models.SoporteConocimientoIdioma	true		"body for SoporteConocimientoIdioma content"
-// @Success 200 {object} models.SoporteConocimientoIdioma
+// @Param	body		body 	models.ConocimientoIdiomaV2	true		"body for ConocimientoIdioma content"
+// @Success 200 {object} models.ConocimientoIdiomaV2
 // @Failure 400 the request contains incorrect syntax
 // @router /:id [put]
-func (c *SoporteConocimientoIdiomaController) Put() {
+func (c *ConocimientoIdiomaV2Controller) Put() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v := models.SoporteConocimientoIdioma{Id: id}
+	v := models.ConocimientoIdiomaV2{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-
-		ci := &models.ConocimientoIdiomaV2 {
-			Id: v.ConocimientoIdioma.Id,
-		}
-		
-		layout := "2006-01-02"  //Cambiar si la hora que viene en string tiene otro formato
-		f_c, _ := time.Parse(layout, v.FechaCreacion)
-
-		v2 := models.SoporteConocimientoIdiomaV2 {
-			Id  :   v.Id,          
-			Descripcion:  v.Descripcion,    
-			FechaCreacion :  f_c,   
-			FechaModificacion :  time.Now(),	
-			TercerosId: v.Institucion, 	
-			DocumentoId: v.Documento,
-			ConocimientoIdiomaId: ci,
-		}
-
-		if err := models.UpdateSoporteConocimientoIdiomaById(&v2); err == nil {
+		if err := models.UpdateConocimientoIdiomaById(&v); err == nil {
 			c.Data["json"] = v
 		} else {
 			logs.Error(err)
@@ -266,15 +177,15 @@ func (c *SoporteConocimientoIdiomaController) Put() {
 
 // Delete ...
 // @Title Delete
-// @Description delete the SoporteConocimientoIdioma
+// @Description delete the ConocimientoIdioma
 // @Param	id		path 	string	true		"The id you want to delete"
 // @Success 200 {string} delete success!
 // @Failure 404 not found resource
 // @router /:id [delete]
-func (c *SoporteConocimientoIdiomaController) Delete() {
+func (c *ConocimientoIdiomaV2Controller) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	if err := models.DeleteSoporteConocimientoIdioma(id); err == nil {
+	if err := models.DeleteConocimientoIdioma(id); err == nil {
 		c.Data["json"] = map[string]interface{}{"Id": id}
 	} else {
 		logs.Error(err)
