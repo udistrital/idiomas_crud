@@ -210,8 +210,9 @@ func (c *SoporteConocimientoIdiomaController) GetAll() {
 
 				temp = append(temp,x)
 			}
+			c.Data["json"] = temp
 		}
-		c.Data["json"] = l
+	
 	}
 	c.ServeJSON()
 }
