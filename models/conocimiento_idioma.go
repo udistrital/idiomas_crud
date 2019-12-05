@@ -11,6 +11,20 @@ import (
 )
 
 type ConocimientoIdioma struct {
+	Id                       int                       `orm:"column(id);pk;auto"`
+	Persona                  int                       `orm:"column(persona)"`
+	Idioma                   *Idioma                   `orm:"column(idioma);rel(fk)"`
+	NivelLee                 *ValorNivelIdioma         `orm:"column(nivel_lee);rel(fk)"`
+	NivelEscribe             *ValorNivelIdioma         `orm:"column(nivel_escribe);rel(fk)"`
+	NivelEscucha             *ValorNivelIdioma         `orm:"column(nivel_escucha);rel(fk)"`
+	NivelHabla               *ValorNivelIdioma         `orm:"column(nivel_habla);rel(fk)"`
+	Nativo                   bool                      `orm:"column(nativo)"`
+	ClasificacionNivelIdioma *Nivel					   `orm:"column(clasificacion_nivel_idioma);rel(fk)"`
+	FechaCreacion            string                    `orm:"column(fecha_creacion);null"`
+	FechaModificacion        string                    `orm:"column(fecha_modificacion);null"`
+}
+
+type ConocimientoIdiomaV2 struct {
 	Id                int               `orm:"column(id);pk;auto"`
 	TercerosId        int               `orm:"column(terceros_id)"`
 	IdiomaId          *Idioma           `orm:"column(idioma_id);rel(fk)"`
@@ -24,17 +38,17 @@ type ConocimientoIdioma struct {
 	FechaModificacion time.Time         `orm:"column(fecha_modificacion);type(timestamp without time zone);null"`
 }
 
-func (t *ConocimientoIdioma) TableName() string {
+func (t *ConocimientoIdiomaV2) TableName() string {
 	return "conocimiento_idioma"
 }
 
 func init() {
-	orm.RegisterModel(new(ConocimientoIdioma))
+	orm.RegisterModel(new(ConocimientoIdiomaV2))
 }
 
 // AddConocimientoIdioma insert a new ConocimientoIdioma into database and returns
 // last inserted Id on success.
-func AddConocimientoIdioma(m *ConocimientoIdioma) (id int64, err error) {
+func AddConocimientoIdioma(m *ConocimientoIdiomaV2) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
@@ -42,9 +56,9 @@ func AddConocimientoIdioma(m *ConocimientoIdioma) (id int64, err error) {
 
 // GetConocimientoIdiomaById retrieves ConocimientoIdioma by Id. Returns error if
 // Id doesn't exist
-func GetConocimientoIdiomaById(id int) (v *ConocimientoIdioma, err error) {
+func GetConocimientoIdiomaById(id int) (v *ConocimientoIdiomaV2, err error) {
 	o := orm.NewOrm()
-	v = &ConocimientoIdioma{Id: id}
+	v = &ConocimientoIdiomaV2{Id: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
@@ -56,7 +70,7 @@ func GetConocimientoIdiomaById(id int) (v *ConocimientoIdioma, err error) {
 func GetAllConocimientoIdioma(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(ConocimientoIdioma)).RelatedSel()
+	qs := o.QueryTable(new(ConocimientoIdiomaV2)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -106,7 +120,7 @@ func GetAllConocimientoIdioma(query map[string]string, fields []string, sortby [
 		}
 	}
 
-	var l []ConocimientoIdioma
+	var l []ConocimientoIdiomaV2
 	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
@@ -131,9 +145,9 @@ func GetAllConocimientoIdioma(query map[string]string, fields []string, sortby [
 
 // UpdateConocimientoIdioma updates ConocimientoIdioma by Id and returns error if
 // the record to be updated doesn't exist
-func UpdateConocimientoIdiomaById(m *ConocimientoIdioma) (err error) {
+func UpdateConocimientoIdiomaById(m *ConocimientoIdiomaV2) (err error) {
 	o := orm.NewOrm()
-	v := ConocimientoIdioma{Id: m.Id}
+	v := ConocimientoIdiomaV2{Id: m.Id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -148,11 +162,11 @@ func UpdateConocimientoIdiomaById(m *ConocimientoIdioma) (err error) {
 // the record to be deleted doesn't exist
 func DeleteConocimientoIdioma(id int) (err error) {
 	o := orm.NewOrm()
-	v := ConocimientoIdioma{Id: id}
+	v := ConocimientoIdiomaV2{Id: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&ConocimientoIdioma{Id: id}); err == nil {
+		if num, err = o.Delete(&ConocimientoIdiomaV2{Id: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}

@@ -5,7 +5,7 @@ import (
 	"errors"
 	"strconv"
 	"strings"
-
+	"time"
 	"github.com/udistrital/idiomas_crud/models"
 
 	"github.com/astaxie/beego"
@@ -35,8 +35,27 @@ func (c *SoporteConocimientoIdiomaController) URLMapping() {
 // @router / [post]
 func (c *SoporteConocimientoIdiomaController) Post() {
 	var v models.SoporteConocimientoIdioma
+
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if _, err := models.AddSoporteConocimientoIdioma(&v); err == nil {
+		//-------------- Temporal: Cambio por transición ------- //
+		ci := &models.ConocimientoIdiomaV2 {
+			Id: v.ConocimientoIdioma.Id,
+		}
+		
+		layout := "2006-01-02"  //Cambiar si la hora que viene en string tiene otro formato
+		f_c, _ := time.Parse(layout, v.FechaCreacion)
+
+		temp := models.SoporteConocimientoIdiomaV2 {
+			Id  :   v.Id,          
+			Descripcion:  v.Descripcion,    
+			FechaCreacion :  f_c,   
+			FechaModificacion :  time.Now(),	
+			TercerosId: v.Institucion, 	
+			DocumentoId: v.Documento,
+			ConocimientoIdiomaId: ci,
+		}
+
+		if _, err := models.AddSoporteConocimientoIdioma(&temp); err == nil {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
 		} else {
@@ -71,7 +90,30 @@ func (c *SoporteConocimientoIdiomaController) GetOne() {
 		c.Data["system"] = err
 		c.Abort("404")
 	} else {
-		c.Data["json"] = v
+
+		ci := &models.ConocimientoIdioma {
+			Id: v.ConocimientoIdiomaId.Id,
+			//NIVELES
+
+		}
+
+		f_c := v.FechaCreacion.String()
+		f_m := v.FechaModificacion.String()
+
+		temp := models.SoporteConocimientoIdioma {
+			Id  :   v.Id,          
+			Descripcion:  v.Descripcion,    
+			FechaCreacion : f_c,   
+			FechaModificacion :  f_m,	
+			Institucion: v.TercerosId, 	
+			Documento: v.DocumentoId,
+			ConocimientoIdioma: ci,
+
+		}
+	
+		c.Data["json"] = temp
+		//-------------- Temporal: Cambio por transición ------- //
+		//c.Data["json"] = v
 	}
 	c.ServeJSON()
 }
@@ -139,8 +181,117 @@ func (c *SoporteConocimientoIdiomaController) GetAll() {
 	} else {
 		if l == nil {
 			l = append(l, map[string]interface{}{})
+			c.Data["json"] = l
+		}else{
+			//-------------- Temporal: Cambio por transición ------- //
+			var temp []models.SoporteConocimientoIdioma
+			for _, i := range l {
+				field, _ := i.(models.SoporteConocimientoIdiomaV2)
+
+				i := &models.Idioma{
+					Id: field.ConocimientoIdiomaId.IdiomaId.Id,
+					Nombre: field.ConocimientoIdiomaId.IdiomaId.Nombre,  
+					Descripcion :  field.ConocimientoIdiomaId.IdiomaId.Descripcion  , 
+					CodigoAbreviacion :field.ConocimientoIdiomaId.IdiomaId.CodigoAbreviacion ,
+					Activo            :field.ConocimientoIdiomaId.IdiomaId.Activo,
+					NumeroOrden :field.ConocimientoIdiomaId.IdiomaId.NumeroOrden     , 
+					FechaCreacion  : field.ConocimientoIdiomaId.IdiomaId.FechaCreacion ,
+					FechaModificacion : field.ConocimientoIdiomaId.IdiomaId.FechaModificacion,
+				}
+		
+				ni := &models.Nivel {
+					Id: field.ConocimientoIdiomaId.NivelId.Id,
+					Nombre: field.ConocimientoIdiomaId.NivelId.Nombre,  
+					Descripcion :  field.ConocimientoIdiomaId.NivelId.Descripcion  , 
+					CodigoAbreviacion :field.ConocimientoIdiomaId.NivelId.CodigoAbreviacion ,
+					Activo            :field.ConocimientoIdiomaId.NivelId.Activo,
+					NumeroOrden :field.ConocimientoIdiomaId.NivelId.NumeroOrden     , 
+					FechaCreacion  : field.ConocimientoIdiomaId.NivelId.FechaCreacion ,
+					FechaModificacion : field.ConocimientoIdiomaId.NivelId.FechaModificacion,
+
+				}
+		
+				nli:= &models.ValorNivelIdioma {
+					Id: field.ConocimientoIdiomaId.NivelLeeId.Id,
+					Nombre: field.ConocimientoIdiomaId.NivelLeeId.Nombre,  
+					Descripcion :  field.ConocimientoIdiomaId.NivelLeeId.Descripcion  , 
+					CodigoAbreviacion :field.ConocimientoIdiomaId.NivelLeeId.CodigoAbreviacion ,
+					Activo            :field.ConocimientoIdiomaId.NivelLeeId.Activo,
+					NumeroOrden :field.ConocimientoIdiomaId.NivelLeeId.NumeroOrden     , 
+					FechaCreacion  : field.ConocimientoIdiomaId.NivelLeeId.FechaCreacion ,
+					FechaModificacion : field.ConocimientoIdiomaId.NivelLeeId.FechaModificacion,
+				}
+		
+				nei:= &models.ValorNivelIdioma {
+					Id: field.ConocimientoIdiomaId.NivelEscribeId.Id,
+					Nombre: field.ConocimientoIdiomaId.NivelEscribeId.Nombre,  
+					Descripcion :  field.ConocimientoIdiomaId.NivelEscribeId.Descripcion  , 
+					CodigoAbreviacion :field.ConocimientoIdiomaId.NivelEscribeId.CodigoAbreviacion ,
+					Activo            :field.ConocimientoIdiomaId.NivelEscribeId.Activo,
+					NumeroOrden :field.ConocimientoIdiomaId.NivelEscribeId.NumeroOrden     , 
+					FechaCreacion  : field.ConocimientoIdiomaId.NivelEscribeId.FechaCreacion ,
+					FechaModificacion : field.ConocimientoIdiomaId.NivelEscribeId.FechaModificacion,
+				}
+		
+				nescui:= &models.ValorNivelIdioma {
+					Id: field.ConocimientoIdiomaId.NivelEscuchaId.Id,
+					Nombre: field.ConocimientoIdiomaId.NivelEscuchaId.Nombre,  
+					Descripcion :  field.ConocimientoIdiomaId.NivelEscuchaId.Descripcion  , 
+					CodigoAbreviacion :field.ConocimientoIdiomaId.NivelEscuchaId.CodigoAbreviacion ,
+					Activo            :field.ConocimientoIdiomaId.NivelEscuchaId.Activo,
+					NumeroOrden :field.ConocimientoIdiomaId.NivelEscuchaId.NumeroOrden     , 
+					FechaCreacion  : field.ConocimientoIdiomaId.NivelEscuchaId.FechaCreacion ,
+					FechaModificacion : field.ConocimientoIdiomaId.NivelEscuchaId.FechaModificacion,
+				}
+		
+				nhi:= &models.ValorNivelIdioma {
+					Id: field.ConocimientoIdiomaId.NivelHablaId.Id,
+					Nombre: field.ConocimientoIdiomaId.NivelHablaId.Nombre,  
+					Descripcion :  field.ConocimientoIdiomaId.NivelHablaId.Descripcion  , 
+					CodigoAbreviacion :field.ConocimientoIdiomaId.NivelHablaId.CodigoAbreviacion ,
+					Activo            :field.ConocimientoIdiomaId.NivelHablaId.Activo,
+					NumeroOrden :field.ConocimientoIdiomaId.NivelHablaId.NumeroOrden     , 
+					FechaCreacion  : field.ConocimientoIdiomaId.NivelHablaId.FechaCreacion ,
+					FechaModificacion : field.ConocimientoIdiomaId.NivelHablaId.FechaModificacion,
+				}
+
+				f_ci := field.ConocimientoIdiomaId.FechaCreacion.String()
+				f_mi := field.ConocimientoIdiomaId.FechaModificacion.String()
+
+				ci := &models.ConocimientoIdioma {
+					Id    : field.ConocimientoIdiomaId.Id,            
+					Persona  : field.ConocimientoIdiomaId.TercerosId,                
+					Idioma  : i,                
+					NivelLee  :    nli,           
+					NivelEscribe  : nei,  
+					NivelEscucha  : nescui,           
+					NivelHabla  : nhi,             
+					Nativo : field.ConocimientoIdiomaId.Nativo,              
+					ClasificacionNivelIdioma : ni,
+					FechaCreacion   : f_ci,
+					FechaModificacion : f_mi,
+		
+				}
+		
+				f_c := field.FechaCreacion.String()
+				f_m := field.FechaModificacion.String()
+
+				x := models.SoporteConocimientoIdioma {
+					Id  :   field.Id,          
+					Descripcion:  field.Descripcion,    
+					FechaCreacion : f_c,   
+					FechaModificacion :  f_m,	
+					Institucion: field.TercerosId, 	
+					Documento: field.DocumentoId,
+					ConocimientoIdioma: ci,
+		
+				}
+
+				temp = append(temp,x)
+			}
+			c.Data["json"] = temp
 		}
-		c.Data["json"] = l
+	
 	}
 	c.ServeJSON()
 }
@@ -158,7 +309,25 @@ func (c *SoporteConocimientoIdiomaController) Put() {
 	id, _ := strconv.Atoi(idStr)
 	v := models.SoporteConocimientoIdioma{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if err := models.UpdateSoporteConocimientoIdiomaById(&v); err == nil {
+
+		ci := &models.ConocimientoIdiomaV2 {
+			Id: v.ConocimientoIdioma.Id,
+		}
+		
+		layout := "2006-01-02"  //Cambiar si la hora que viene en string tiene otro formato
+		f_c, _ := time.Parse(layout, v.FechaCreacion)
+
+		v2 := models.SoporteConocimientoIdiomaV2 {
+			Id  :   v.Id,          
+			Descripcion:  v.Descripcion,    
+			FechaCreacion :  f_c,   
+			FechaModificacion :  time.Now(),	
+			TercerosId: v.Institucion, 	
+			DocumentoId: v.Documento,
+			ConocimientoIdiomaId: ci,
+		}
+
+		if err := models.UpdateSoporteConocimientoIdiomaById(&v2); err == nil {
 			c.Data["json"] = v
 		} else {
 			logs.Error(err)

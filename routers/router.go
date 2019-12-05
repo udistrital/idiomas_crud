@@ -14,7 +14,40 @@ import (
 )
 
 func init() {
-	ns := beego.NewNamespace("/v1",
+
+	ns1 := beego.NewNamespace("/v1",
+
+		beego.NSNamespace("/idioma",
+			beego.NSInclude(
+				&controllers.IdiomaController{},
+			),
+		),
+		beego.NSNamespace("/clasificacion_nivel_idioma",
+			beego.NSInclude(
+				&controllers.NivelController{},
+			),
+		),
+
+		beego.NSNamespace("/valor_nivel_idioma",
+			beego.NSInclude(
+				&controllers.ValorNivelIdiomaController{},
+			),
+		),
+
+		beego.NSNamespace("/soporte_conocimiento_idioma",
+			beego.NSInclude(
+				&controllers.SoporteConocimientoIdiomaController{},
+			),
+		),
+
+		beego.NSNamespace("/conocimiento_idioma",
+			beego.NSInclude(
+				&controllers.ConocimientoIdiomaController{},
+			),
+		),
+	)
+
+	ns2 := beego.NewNamespace("/v2",
 
 		beego.NSNamespace("/idioma",
 			beego.NSInclude(
@@ -36,15 +69,16 @@ func init() {
 
 		beego.NSNamespace("/conocimiento_idioma",
 			beego.NSInclude(
-				&controllers.ConocimientoIdiomaController{},
+				&controllers.ConocimientoIdiomaV2Controller{},
 			),
 		),
 
 		beego.NSNamespace("/soporte_conocimiento_idioma",
 			beego.NSInclude(
-				&controllers.SoporteConocimientoIdiomaController{},
+				&controllers.SoporteConocimientoIdiomaV2Controller{},
 			),
 		),
 	)
-	beego.AddNamespace(ns)
+	beego.AddNamespace(ns1)
+	beego.AddNamespace(ns2)
 }
