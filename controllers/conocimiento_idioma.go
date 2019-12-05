@@ -118,6 +118,7 @@ func (c *ConocimientoIdiomaController) GetOne() {
 
 		i := &models.Idioma{
 			Id: v.IdiomaId.Id,
+		    
 		}
 
 		ni := &models.Nivel {
@@ -235,26 +236,69 @@ func (c *ConocimientoIdiomaController) GetAll() {
 
 				i := &models.Idioma{
 					Id: field.IdiomaId.Id,
+					Nombre: field.IdiomaId.Nombre,  
+					Descripcion :  field.IdiomaId.Descripcion  , 
+					CodigoAbreviacion :field.IdiomaId.CodigoAbreviacion ,
+					Activo            :field.IdiomaId.Activo,
+					NumeroOrden :field.IdiomaId.NumeroOrden     , 
+					FechaCreacion  : field.IdiomaId.FechaCreacion ,
+					FechaModificacion : field.IdiomaId.FechaModificacion,
 				}
 		
 				ni := &models.Nivel {
 					Id: field.NivelId.Id,
+					Nombre: field.NivelId.Nombre,  
+					Descripcion :  field.NivelId.Descripcion  , 
+					CodigoAbreviacion :field.NivelId.CodigoAbreviacion ,
+					Activo            :field.NivelId.Activo,
+					NumeroOrden :field.NivelId.NumeroOrden     , 
+					FechaCreacion  : field.NivelId.FechaCreacion ,
+					FechaModificacion : field.NivelId.FechaModificacion,
+
 				}
 		
 				nli:= &models.ValorNivelIdioma {
 					Id: field.NivelLeeId.Id,
+					Nombre: field.NivelLeeId.Nombre,  
+					Descripcion :  field.NivelLeeId.Descripcion  , 
+					CodigoAbreviacion :field.NivelLeeId.CodigoAbreviacion ,
+					Activo            :field.NivelLeeId.Activo,
+					NumeroOrden :field.NivelLeeId.NumeroOrden     , 
+					FechaCreacion  : field.NivelLeeId.FechaCreacion ,
+					FechaModificacion : field.NivelLeeId.FechaModificacion,
 				}
 		
 				nei:= &models.ValorNivelIdioma {
 					Id: field.NivelEscribeId.Id,
+					Nombre: field.NivelEscribeId.Nombre,  
+					Descripcion :  field.NivelEscribeId.Descripcion  , 
+					CodigoAbreviacion :field.NivelEscribeId.CodigoAbreviacion ,
+					Activo            :field.NivelEscribeId.Activo,
+					NumeroOrden :field.NivelEscribeId.NumeroOrden     , 
+					FechaCreacion  : field.NivelEscribeId.FechaCreacion ,
+					FechaModificacion : field.NivelEscribeId.FechaModificacion,
 				}
 		
 				nescui:= &models.ValorNivelIdioma {
 					Id: field.NivelEscuchaId.Id,
+					Nombre: field.NivelEscuchaId.Nombre,  
+					Descripcion :  field.NivelEscuchaId.Descripcion  , 
+					CodigoAbreviacion :field.NivelEscuchaId.CodigoAbreviacion ,
+					Activo            :field.NivelEscuchaId.Activo,
+					NumeroOrden :field.NivelEscuchaId.NumeroOrden     , 
+					FechaCreacion  : field.NivelEscuchaId.FechaCreacion ,
+					FechaModificacion : field.NivelEscuchaId.FechaModificacion,
 				}
 		
 				nhi:= &models.ValorNivelIdioma {
 					Id: field.NivelHablaId.Id,
+					Nombre: field.NivelHablaId.Nombre,  
+					Descripcion :  field.NivelHablaId.Descripcion  , 
+					CodigoAbreviacion :field.NivelHablaId.CodigoAbreviacion ,
+					Activo            :field.NivelHablaId.Activo,
+					NumeroOrden :field.NivelHablaId.NumeroOrden     , 
+					FechaCreacion  : field.NivelHablaId.FechaCreacion ,
+					FechaModificacion : field.NivelHablaId.FechaModificacion,
 				}
 		
 				f_c := field.FechaCreacion.String()
