@@ -189,3 +189,5 @@ COMMENT ON COLUMN idiomas.soporte_conocimiento_idioma.documento_id IS 'Identific
 COMMENT ON COLUMN idiomas.soporte_conocimiento_idioma.conocimiento_idioma_id IS 'Identificador de la tabla conocimiento_idioma.';
 --######################################################################################################################################################
 --######################################################################################################################################################
+
+--D10 - Se hacen migraciones para insertar data del Repositorio de Planestic
