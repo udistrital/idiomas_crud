@@ -1,0 +1,13 @@
+{
+  "title": "Example Schema",
+  "type": "object",
+  "properties": {
+    "Id": { "type": "integer" },
+    "Institucion": { "type": "integer" },
+    "Documento": { "type": "integer" },
+    "Descripcion": { "type": "string" },
+    "ConocimientoIdioma":	{ "type": "ConocimientoIdioma" },
+    "FechaCreacion": { "type": "string" },
+    "FechaModificacion": { "type": "string" }
+  }
+}

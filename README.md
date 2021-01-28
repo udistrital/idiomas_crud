@@ -1,34 +1,35 @@
-# :speech_balloon: IDIOMAS CRUD
 
+# idiomas_crud
+API para gestión de conocimientos en idiomas de una persona
 
-API CRUD para la gestión del conocimiento en idiomas con el que cuentan las personas relacionadas a la Universidad Distrital. El proyecto está escrito en el lenguaje GO, generado mediante el framework beego.
+Integración con
 
+ - `CI`
+ - `AWS Lambda - S3`
+ - `Drone 1.x`
+ - `idiomas_crud master/develop`
 
+## Requerimientos
+Go version >= 1.8.
 
-## Modelo de datos
-![Modelo de datos idiomas](https://github.com/udistrital/idiomas_crud/blob/dev/sql/idiomas_crud.png?raw=true)
+## Preparación
+Para usar el API, usar el comando:
+
+ - `go get github.com/planesticud/idiomas_crud`
 
 ## Ejecución
-  - Clonar el proyecto de github y ubicarse en la carpeta raiz:
-  ```
-  $ git clone https://github.com/udistrital/idiomas_crud.git
-  $ cd idiomas_crud
-  ```
-  - Con la sentencia go get:
-  ```
-  $ go get -u https://github.com/udistrital/idiomas_crud.git
-  $ cd go/src/github.com/udistrital/idiomas_crud
-  ```
-  
-## Licencia
+Definir los valores de las siguientes variables de entorno:
 
-This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ - `IDIOMAS_CRUD_HTTP_PORT`: Puerto asignado para la ejecución del API
+ - `IDIOMAS_CRUD__PGUSER`: Usuario de la base de datos
+ - `IDIOMAS_CRUD__PGPASS`: Clave del usuario para la conexión a la base de datos  
+ - `IDIOMAS_CRUD__PGURLS`: Host de conexión
+ - `IDIOMAS_CRUD__PGDB`: Nombre de la base de datos
+ - `IDIOMAS_CRUD__SCHEMA`: Esquema a utilizar en la base de datos
 
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+## Ejemplo
+IDIOMAS_CRUD_HTTP_PORT=8103 IDIOMAS_CRUD__PGUSER=user IDIOMAS_CRUD__PGPASS=password IDIOMAS_CRUD__PGURLS=localhost IDIOMAS_CRUD__PGDB=bd IDIOMAS_CRUD__SCHEMA=schema_new bee run
 
-**UNIVERSIDAD DISTRITAL FRANCISCO JOSÉ DE CALDAS**
-
-**OFICINA ASESORA DE SISTEMAS**
-
-**2019**
+## Modelo BD
+![image](https://github.com/planesticud/idiomas_crud/blob/develop/modelo_idiomas_crud.png).
 

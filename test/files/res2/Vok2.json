@@ -1,0 +1,17 @@
+{
+  "title": "Example Schema",
+  "type": "object",
+  "properties": {
+    "Id": { "type": "integer" },
+    "Persona": { "type": "integer" },
+    "Idioma":	{ "type": "Idioma" },
+    "NivelLee":	{ "type": "NivelLee" },
+    "NivelEscribe":	{ "type": "NivelEscribe" },
+    "NivelEscucha":	{ "type": "NivelEscucha" },
+    "NivelHabla":	{ "type": "NivelHabla" },
+    "Nativo": { "type": "boolean" },
+    "ClasificacionNivelIdioma":	{ "type": "ClasificacionNivelIdioma" },
+    "FechaCreacion": { "type": "string" },
+    "FechaModificacion": { "type": "string" }
+  }
+}

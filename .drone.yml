@@ -1,0 +1,65 @@
+kind: pipeline
+name: idiomas_crud
+workspace:
+  base: /go
+  path: src/github.com/planesticud/${DRONE_REPO##planesticud/}
+  when:
+    branch: 
+    - master
+    - develop
+    event:
+    - push
+    
+steps:
+- name: build
+  image: golang:1.9
+  commands:
+  - go get -t
+  - GOOS=linux GOARCH=amd64 go build -o main
+  - go get -u gopkg.in/alecthomas/gometalinter.v1
+  - gometalinter.v1 --install     
+  when:
+    branch: 
+    - master
+    - develop
+    event:
+    - push
+            
+- name: publish-dockerhub  
+  image: plugins/docker
+  settings:
+    username:
+      from_secret: usdocker
+    password:
+      from_secret: psdocker
+    repo: planesticud/${DRONE_REPO##planesticud/}
+    tags:
+    - ${DRONE_COMMIT:0:7}
+    - latest
+  when:
+    branch: 
+    - master
+    - develop
+    event:
+    - push
+
+- name: notify
+  image: appleboy/drone-telegram
+  settings:
+    token:
+      from_secret: telegram2
+    to:
+      from_secret: id2
+    format: html
+    message: >
+      {{#success build.status}}
+        <code>{{repo.owner}}/{{repo.name}}</code> <a href="{{build.link}}">SUCCESS</a> 
+        <code>{{commit.branch}}</code>@<a href="{{commit.link}}">{{truncate commit.sha 7}}</a>
+      {{else}}
+        <code>{{repo.owner}}/{{repo.name}}</code> <a href="{{build.link}}">FAILURE</a>
+        <code>{{commit.branch}}</code>@<a href="{{commit.link}}">{{truncate commit.sha 7}}</a>
+      {{/success}}
+  when:
+   status:
+   - failure
+   - success

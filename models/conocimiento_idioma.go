@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/astaxie/beego/orm"
+	"github.com/udistrital/utils_oas/time_bogota"
 )
 
 type ConocimientoIdioma struct {
@@ -19,6 +20,8 @@ type ConocimientoIdioma struct {
 	NivelHabla               *ValorNivelIdioma         `orm:"column(nivel_habla);rel(fk)"`
 	Nativo                   bool                      `orm:"column(nativo)"`
 	ClasificacionNivelIdioma *ClasificacionNivelIdioma `orm:"column(clasificacion_nivel_idioma);rel(fk)"`
+	FechaCreacion            string                    `orm:"column(fecha_creacion);null"`
+	FechaModificacion        string                    `orm:"column(fecha_modificacion);null"`
 }
 
 func (t *ConocimientoIdioma) TableName() string {
@@ -32,6 +35,8 @@ func init() {
 // AddConocimientoIdioma insert a new ConocimientoIdioma into database and returns
 // last inserted Id on success.
 func AddConocimientoIdioma(m *ConocimientoIdioma) (id int64, err error) {
+	m.FechaCreacion = time_bogota.TiempoBogotaFormato()
+	m.FechaModificacion = time_bogota.TiempoBogotaFormato()
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
@@ -53,7 +58,7 @@ func GetConocimientoIdiomaById(id int) (v *ConocimientoIdioma, err error) {
 func GetAllConocimientoIdioma(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(ConocimientoIdioma))
+	qs := o.QueryTable(new(ConocimientoIdioma)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -127,10 +132,11 @@ func GetAllConocimientoIdioma(query map[string]string, fields []string, sortby [
 func UpdateConocimientoIdiomaById(m *ConocimientoIdioma) (err error) {
 	o := orm.NewOrm()
 	v := ConocimientoIdioma{Id: m.Id}
+	m.FechaModificacion = time_bogota.TiempoBogotaFormato()
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Update(m); err == nil {
+		if num, err = o.Update(m, "Persona", "Idioma", "NivelLee", "NivelEscribe", "NivelEscucha", "NivelHabla", "Nativo", "ClasificacionNivelIdioma", "FechaModificacion"); err == nil {
 			fmt.Println("Number of records updated in database:", num)
 		}
 	}
