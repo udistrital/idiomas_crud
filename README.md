@@ -15,7 +15,7 @@ Go version >= 1.8.
 ## Preparación
 Para usar el API, usar el comando:
 
- - `go get github.com/planesticud/idiomas_crud`
+ - `go get github.com/udistrital/idiomas_crud`
 
 ## Ejecución
 Definir los valores de las siguientes variables de entorno:
@@ -31,5 +31,5 @@ Definir los valores de las siguientes variables de entorno:
 IDIOMAS_CRUD_HTTP_PORT=8103 IDIOMAS_CRUD__PGUSER=user IDIOMAS_CRUD__PGPASS=password IDIOMAS_CRUD__PGURLS=localhost IDIOMAS_CRUD__PGDB=bd IDIOMAS_CRUD__SCHEMA=schema_new bee run
 
 ## Modelo BD
-![image](https://github.com/planesticud/idiomas_crud/blob/develop/modelo_idiomas_crud.png).
+![image](https://github.com/udistrital/idiomas_crud/blob/develop/modelo_idiomas_crud.png).
 

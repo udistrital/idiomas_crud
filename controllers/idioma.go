@@ -7,7 +7,7 @@ import (
 
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/logs"
-	"github.com/planesticud/idiomas_crud/models"
+	"github.com/udistrital/idiomas_crud/models"
 )
 
 // oprations for Idioma
