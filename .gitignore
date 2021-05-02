@@ -1,2 +1,15 @@
 lastupdate.tmp
 idiomas_crud
+.vscode/
+.scannerwork/
+swagger/*.png
+swagger/*.html
+swagger/*.js
+swagger/*.map
+swagger/*.css
+swagger/css/
+swagger/fonts/
+swagger/images/
+swagger/lang/
+swagger/lib/
+*.exe
