@@ -29,6 +29,7 @@ type ConocimientoIdiomaV2 struct {
 	TercerosId        int               `orm:"column(terceros_id)"`
 	IdiomaId          *Idioma           `orm:"column(idioma_id);rel(fk)"`
 	Nativo            bool              `orm:"column(nativo)"`
+	SeleccionExamen	  bool				`orm:"column(seleccion_examen)"`
 	NivelId           *Nivel            `orm:"column(nivel_id);rel(fk)"`
 	NivelLeeId        *ValorNivelIdioma `orm:"column(nivel_lee_id);rel(fk)"`
 	NivelEscribeId    *ValorNivelIdioma `orm:"column(nivel_escribe_id);rel(fk)"`
