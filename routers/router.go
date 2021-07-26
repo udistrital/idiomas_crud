@@ -78,6 +78,11 @@ func init() {
 				&controllers.SoporteConocimientoIdiomaV2Controller{},
 			),
 		),
+		beego.NSNamespace("/clasificacion_nivel_idioma",
+			beego.NSInclude(
+				&controllers.NivelController{},
+			),
+		),
 	)
 	beego.AddNamespace(ns1)
 	beego.AddNamespace(ns2)
