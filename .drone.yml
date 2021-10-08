@@ -134,9 +134,14 @@ steps:
 - name: zap
   image: owasp/zap2docker-weekly
   commands:
+  - cd
   - pwd
-  - ls
-  - zap-api-scan.py -t ${DRONE_REPO}/blob/develop/swagger/swagger.json -f openapi -r report.html
+  - mkdir zap
+  - cd zap
+  - mkdir wrk
+  - zap-api-scan.py -t https://github.com/${DRONE_REPO}/blob/develop/swagger/swagger.json -f openapi -r report.html
+  volumes:
+    -$(pwd)/zap/wrk:/zap/wrk 
   when:
     branch:
     - develop
