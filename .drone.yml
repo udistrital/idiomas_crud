@@ -141,10 +141,15 @@ steps:
   - mkdir wrk
   - zap-api-scan.py -t https://github.com/${DRONE_REPO}/blob/develop/swagger/swagger.json -f openapi -r report.html
   volumes:
-  - /zap/wrk:/zap/wrk 
+  - name: zap
+    path: /zap/wrk
   when:
     branch:
     - develop
+volumes:
+- name: zap
+  host:
+    path: /zap/wrk
 
 - name: publish_to_ecr_release
   image: plugins/ecr
