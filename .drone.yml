@@ -134,22 +134,10 @@ steps:
 - name: zap
   image: owasp/zap2docker-weekly
   commands:
-  - cd
-  - pwd
-  - mkdir zap
-  - cd zap
-  - mkdir wrk
-  - zap-api-scan.py -t https://github.com/${DRONE_REPO}/blob/develop/swagger/swagger.json -f openapi -r report.html
-  volumes:
-  - name: zap
-    path: /zap/wrk
+  - zap-baseline.py -t https://github.com/${DRONE_REPO}/blob/develop/swagger/swagger.json
   when:
     branch:
     - develop
-volumes:
-- name: zap
-  host:
-    path: /zap/wrk
 
 - name: publish_to_ecr_release
   image: plugins/ecr
