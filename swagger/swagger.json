@@ -1059,6 +1059,9 @@
             "title": "ConocimientoIdioma",
             "type": "object",
             "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
                 "ClasificacionNivelIdioma": {
                     "$ref": "#/definitions/models.Nivel"
                 },
@@ -1100,6 +1103,9 @@
             "title": "ConocimientoIdiomaV2",
             "type": "object",
             "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
                 "FechaCreacion": {
                     "type": "string",
                     "format": "datetime"
@@ -1211,6 +1217,9 @@
             "title": "SoporteConocimientoIdioma",
             "type": "object",
             "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
                 "ConocimientoIdioma": {
                     "$ref": "#/definitions/models.ConocimientoIdioma"
                 },
@@ -1241,6 +1250,9 @@
             "title": "SoporteConocimientoIdiomaV2",
             "type": "object",
             "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
                 "ConocimientoIdiomaId": {
                     "$ref": "#/definitions/models.ConocimientoIdiomaV2"
                 },

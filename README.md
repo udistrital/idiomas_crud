@@ -83,7 +83,8 @@ Pruebas unitarias
 
 
 ## Modelo de datos
-![Modelo de datos idiomas](https://github.com/udistrital/idiomas_crud/blob/dev/sql/idiomas_crud.png?raw=true)
+![Modelo de datos idiomas](sql/idiomas_crud_V5.png)
+[Modelo de datos idiomas](sql/idiomas_crud_V5.png)
 
 
   

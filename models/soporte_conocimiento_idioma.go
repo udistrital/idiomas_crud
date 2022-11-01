@@ -16,17 +16,19 @@ type SoporteConocimientoIdioma struct {
 	Documento          int                 `orm:"column(documento)"`
 	Descripcion        string              `orm:"column(descripcion);null"`
 	ConocimientoIdioma *ConocimientoIdioma `orm:"column(conocimiento_idioma);rel(fk)"`
+	Activo             bool                `orm:"column(activo)"`
 	FechaCreacion      string              `orm:"column(fecha_creacion);null"`
 	FechaModificacion  string              `orm:"column(fecha_modificacion);null"`
 }
 
 type SoporteConocimientoIdiomaV2 struct {
-	Id                   int                 `orm:"column(id);pk;auto"`
-	Descripcion          string              `orm:"column(descripcion);null"`
-	FechaCreacion        time.Time           `orm:"column(fecha_creacion);type(timestamp without time zone);null"`
-	FechaModificacion    time.Time           `orm:"column(fecha_modificacion);type(timestamp without time zone);null"`
-	TercerosId           int                 `orm:"column(terceros_id)"`
-	DocumentoId          int                 `orm:"column(documento_id)"`
+	Id                   int                   `orm:"column(id);pk;auto"`
+	Descripcion          string                `orm:"column(descripcion);null"`
+	Activo               bool                  `orm:"column(activo)"`
+	FechaCreacion        time.Time             `orm:"column(fecha_creacion);type(timestamp without time zone);null"`
+	FechaModificacion    time.Time             `orm:"column(fecha_modificacion);type(timestamp without time zone);null"`
+	TercerosId           int                   `orm:"column(terceros_id)"`
+	DocumentoId          int                   `orm:"column(documento_id)"`
 	ConocimientoIdiomaId *ConocimientoIdiomaV2 `orm:"column(conocimiento_idioma_id);rel(fk)"`
 }
 
