@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+ Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.9.4" use-changelog="false" last-position="222,25" last-zoom="0.8" max-obj-count="8"
+	 default-schema="public" default-owner="postgres"
+	 layers="Default layer"
+	 active-layers="0"
+	 layer-name-colors="#000000"
+	 layer-rect-colors="#b4b4b4"
+	 show-layer-names="false" show-layer-rects="false">
+<role name="desarrollooas"
+ superuser="true"
+ createdb="true"
+ replication="true"
+ createrole="true"
+ inherit="true"
+ login="true"
+ encrypted="true"
+ password="********">
+	<comment><![CDATA[Usuario pruebas udistrital]]></comment>
+</role>
+
+<database name="idiomas" encoding="UTF8" lc-collate="es_CO.UTF-8" lc-ctype="es_CO.UTF-8" is-template="false" allow-conns="true">
+	<role name="desarrollooas"/>
+	<tablespace name="pg_default"/>
+</database>
+
+<schema name="public" layers="0" rect-visible="true" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<schema name="idiomas" layers="0" rect-visible="true" fill-color="#2457cc">
+	<role name="desarrollooas"/>
+</schema>
+
+<sequence name="idioma_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="2147483647" cache="1">
+	<schema name="idiomas"/>
+	<role name="desarrollooas"/>
+</sequence>
+
+<table name="idioma" layers="0" collapse-mode="2" max-obj-count="9" z-value="0">
+	<schema name="idiomas"/>
+	<role name="desarrollooas"/>
+	<comment><![CDATA[Tabla que parametriza los Idiomas.]]></comment>
+	<position x="680" y="300"/>
+	<column name="id" not-null="true" sequence="idiomas.idioma_id_seq">
+		<type name="integer" length="0"/>
+		<comment><![CDATA[Identificador unico de la tabla idioma.]]></comment>
+	</column>
+	<column name="nombre" not-null="true">
+		<type name="character varying" length="100"/>
+		<comment><![CDATA[Campo obligatorio de la tabla que indica el nombre del parámetro.]]></comment>
+	</column>
+	<column name="descripcion">
+		<type name="character varying" length="100"/>
+		<comment><![CDATA[Campo en el que se puede registrar una descripcion de la información de idioma.]]></comment>
+	</column>
+	<column name="codigo_abreviacion">
+		<type name="character varying" length="20"/>
+		<comment><![CDATA[Código de abreviación, sigla, acrónimo u otra representación corta del registro si se requiere.]]></comment>
+	</column>
+	<column name="activo" not-null="true">
+		<type name="boolean" length="0"/>
+		<comment><![CDATA[Valor booleano para indicar si el registro esta activo o inactivo.]]></comment>
+	</column>
+	<column name="numero_orden">
+		<type name="numeric" length="5" precision="2"/>
+		<comment><![CDATA[En dado caso que se necesite establecer un orden a los registros que no se encuentre definido por aplicación ni por BD. Allí se almacena permitiendo realizar subitems mediante la precisión.]]></comment>
+	</column>
+	<column name="fecha_creacion">
+		<type name="timestamp" length="0"/>
+		<comment><![CDATA[Fecha y hora de la creación del registro en la BD.]]></comment>
+	</column>
+	<column name="fecha_modificacion">
+		<type name="timestamp" length="0"/>
+		<comment><![CDATA[Fecha y hora de la ultima modificación del registro en la BD.]]></comment>
+	</column>
+	<constraint name="pk_idioma" type="pk-constr" table="idiomas.idioma">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="unique_nombre_idioma" type="uq-constr" table="idiomas.idioma">
+		<columns names="nombre" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="nivel_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="2147483647" cache="1">
+	<schema name="idiomas"/>
+	<role name="desarrollooas"/>
+</sequence>
+
+<table name="nivel" layers="0" collapse-mode="2" max-obj-count="9" z-value="0">
+	<schema name="idiomas"/>
+	<role name="desarrollooas"/>
+	<comment><![CDATA[Tabla que parametriza los los niveles de idiomas existentes en la clasificación del Marco Común Europeo de Referencia para las lenguas (MCERL).]]></comment>
+	<position x="1980" y="560"/>
+	<column name="id" not-null="true" sequence="idiomas.nivel_id_seq">
+		<type name="integer" length="0"/>
+		<comment><![CDATA[Identificador unico de la tabla nivel.]]></comment>
+	</column>
+	<column name="nombre" not-null="true">
+		<type name="character varying" length="100"/>
+		<comment><![CDATA[Campo obligatorio de la tabla que indica el nombre del parámetro.]]></comment>
+	</column>
+	<column name="descripcion">
+		<type name="character varying" length="100"/>
+		<comment><![CDATA[Campo en el que se puede registrar una descripcion de la información de nivel idioma.]]></comment>
+	</column>
+	<column name="codigo_abreviacion">
+		<type name="character varying" length="20"/>
+		<comment><![CDATA[Código de abreviación, sigla, acrónimo u otra representación corta del registro si se requiere.]]></comment>
+	</column>
+	<column name="activo" not-null="true">
+		<type name="boolean" length="0"/>
+		<comment><![CDATA[Valor booleano para indicar si el registro esta activo o inactivo.]]></comment>
+	</column>
+	<column name="numero_orden">
+		<type name="numeric" length="5" precision="2"/>
+		<comment><![CDATA[En dado caso que se necesite establecer un orden a los registros que no se encuentre definido por aplicación ni por BD. Allí se almacena permitiendo realizar subitems mediante la precisión.]]></comment>
+	</column>
+	<column name="fecha_creacion">
+		<type name="timestamp" length="0"/>
+		<comment><![CDATA[Fecha y hora de la creación del registro en la BD.]]></comment>
+	</column>
+	<column name="fecha_modificacion">
+		<type name="timestamp" length="0"/>
+		<comment><![CDATA[Fecha y hora de la ultima modificación del registro en la BD.]]></comment>
+	</column>
+	<constraint name="pk_nivel" type="pk-constr" table="idiomas.nivel">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="unique_nombre_nivel" type="uq-constr" table="idiomas.nivel">
+		<columns names="nombre" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="valor_nivel_idioma_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="2147483647" cache="1">
+	<schema name="idiomas"/>
+	<role name="desarrollooas"/>
+</sequence>
+
+<table name="valor_nivel_idioma" layers="0" collapse-mode="2" max-obj-count="9" z-value="0">
+	<schema name="idiomas"/>
+	<role name="desarrollooas"/>
+	<comment><![CDATA[Tabla paramétrica que almacena los posibles valores para los niveles de lectura, escritura, escucha y habla de un idioma..]]></comment>
+	<position x="1980" y="880"/>
+	<column name="id" not-null="true" sequence="idiomas.valor_nivel_idioma_id_seq">
+		<type name="integer" length="0"/>
+		<comment><![CDATA[Identificador unico de la tabla valor_nivel_idioma.]]></comment>
+	</column>
+	<column name="nombre" not-null="true">
+		<type name="character varying" length="100"/>
+		<comment><![CDATA[Campo obligatorio de la tabla que indica el nombre del parámetro.]]></comment>
+	</column>
+	<column name="descripcion">
+		<type name="character varying" length="100"/>
+		<comment><![CDATA[Campo en el que se puede registrar una descripcion de la información del valor de lectura, escritura, escucha y habla.]]></comment>
+	</column>
+	<column name="codigo_abreviacion">
+		<type name="character varying" length="20"/>
+		<comment><![CDATA[Código de abreviación, sigla, acrónimo u otra representación corta del registro si se requiere.]]></comment>
+	</column>
+	<column name="activo" not-null="true">
+		<type name="boolean" length="0"/>
+		<comment><![CDATA[Valor booleano para indicar si el registro esta activo o inactivo.]]></comment>
+	</column>
+	<column name="numero_orden">
+		<type name="numeric" length="5" precision="2"/>
+		<comment><![CDATA[En dado caso que se necesite establecer un orden a los registros que no se encuentre definido por aplicación ni por BD. Allí se almacena permitiendo realizar subitems mediante la precisión.]]></comment>
+	</column>
+	<column name="fecha_creacion">
+		<type name="timestamp" length="0"/>
+		<comment><![CDATA[Fecha y hora de la creación del registro en la BD.]]></comment>
+	</column>
+	<column name="fecha_modificacion">
+		<type name="timestamp" length="0"/>
+		<comment><![CDATA[Fecha y hora de la ultima modificación del registro en la BD.]]></comment>
+	</column>
+	<constraint name="pk_valor_nivel_idioma" type="pk-constr" table="idiomas.valor_nivel_idioma">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="unique_nombre_valor_nivel_idioma" type="uq-constr" table="idiomas.valor_nivel_idioma">
+		<columns names="nombre" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="conocimiento_idioma_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="2147483647" cache="1">
+	<schema name="idiomas"/>
+	<role name="desarrollooas"/>
+</sequence>
+
+<table name="conocimiento_idioma" layers="0" collapse-mode="2" max-obj-count="14" z-value="0">
+	<schema name="idiomas"/>
+	<role name="desarrollooas"/>
+	<comment><![CDATA[Tabla que almacena los conocimientos en idiomas que tiene una Persona (Terceros).]]></comment>
+	<position x="1300" y="520"/>
+	<column name="id" not-null="true" sequence="idiomas.conocimiento_idioma_id_seq">
+		<type name="integer" length="0"/>
+		<comment><![CDATA[Identificador unico de la tabla conocimiento_idioma.]]></comment>
+	</column>
+	<column name="terceros_id" not-null="true">
+		<type name="integer" length="0"/>
+		<comment><![CDATA[Persona a la que se le relaciona un nivel de idioma.]]></comment>
+	</column>
+	<column name="idioma_id" not-null="true">
+		<type name="integer" length="0"/>
+		<comment><![CDATA[Identificador unico de la tabla idioma, Idioma al cual se le relaciona el nivel y clasificación.]]></comment>
+	</column>
+	<column name="nativo" not-null="true">
+		<type name="boolean" length="0"/>
+		<comment><![CDATA[Valor booleano para indicar si el idioma es nativo de la Persona.]]></comment>
+	</column>
+	<column name="nivel_id">
+		<type name="integer" length="0"/>
+		<comment><![CDATA[Identificador unico de la tabla nivel que parametriza el nivel de idioma de la Persona en la clasificación (MCERL).]]></comment>
+	</column>
+	<column name="nivel_lee_id">
+		<type name="integer" length="0"/>
+		<comment><![CDATA[Nivel de lectura que tiene la persona sobre el idioma.]]></comment>
+	</column>
+	<column name="nivel_escribe_id">
+		<type name="integer" length="0"/>
+		<comment><![CDATA[Nivel de escritura que tiene la persona sobre el idioma.]]></comment>
+	</column>
+	<column name="nivel_escucha_id">
+		<type name="integer" length="0"/>
+		<comment><![CDATA[Nivel de escucha que tiene la persona sobre el idioma.]]></comment>
+	</column>
+	<column name="nivel_habla_id">
+		<type name="integer" length="0"/>
+		<comment><![CDATA[Nivel de habla que tiene la persona sobre el idioma.]]></comment>
+	</column>
+	<column name="fecha_creacion">
+		<type name="timestamp" length="0"/>
+		<comment><![CDATA[Fecha y hora de la creación del registro en la BD.]]></comment>
+	</column>
+	<column name="fecha_modificacion">
+		<type name="timestamp" length="0"/>
+		<comment><![CDATA[Fecha y hora de la ultima modificación del registro en la BD.]]></comment>
+	</column>
+	<column name="activo" not-null="true">
+		<type name="boolean" length="0"/>
+		<comment><![CDATA[Indica el estado del registro]]></comment>
+	</column>
+	<constraint name="pk_conocimiento_idioma" type="pk-constr" table="idiomas.conocimiento_idioma">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="soporte_conocimiento_idioma_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="2147483647" cache="1">
+	<schema name="idiomas"/>
+	<role name="desarrollooas"/>
+</sequence>
+
+<table name="soporte_conocimiento_idioma" layers="0" collapse-mode="2" max-obj-count="9" z-value="0">
+	<schema name="idiomas"/>
+	<role name="desarrollooas"/>
+	<position x="1980" y="240"/>
+	<column name="id" not-null="true" sequence="idiomas.soporte_conocimiento_idioma_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="descripcion">
+		<type name="character varying" length="100"/>
+	</column>
+	<column name="fecha_creacion">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="fecha_modificacion">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="terceros_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="documento_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="conocimiento_idioma_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="activo" not-null="true">
+		<type name="boolean" length="0"/>
+		<comment><![CDATA[Indica el estado del registro]]></comment>
+	</column>
+	<constraint name="pk_soporte_conocimiento_idioma" type="pk-constr" table="idiomas.soporte_conocimiento_idioma">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<constraint name="fk_idioma_conocimiento_idioma" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="idiomas.idioma" table="idiomas.conocimiento_idioma">
+	<columns names="idioma_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_nivel_conocimiento_idioma" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="idiomas.nivel" table="idiomas.conocimiento_idioma">
+	<columns names="nivel_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_valor_nivel_idioma_lee" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="idiomas.valor_nivel_idioma" table="idiomas.conocimiento_idioma">
+	<columns names="nivel_lee_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_valor_nivel_idioma_escribe" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="idiomas.valor_nivel_idioma" table="idiomas.conocimiento_idioma">
+	<columns names="nivel_escribe_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_valor_nivel_idioma_escucha" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="idiomas.valor_nivel_idioma" table="idiomas.conocimiento_idioma">
+	<columns names="nivel_escucha_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_valor_nivel_idioma_habla" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="idiomas.valor_nivel_idioma" table="idiomas.conocimiento_idioma">
+	<columns names="nivel_habla_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_conocimiento_idioma_soporte_conocimiento_idioma" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="idiomas.conocimiento_idioma" table="idiomas.soporte_conocimiento_idioma">
+	<columns names="conocimiento_idioma_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<relationship name="rel_conocimiento_idioma_idioma" type="relfk" layers="0"
+	 custom-color="#2fb036"
+	 src-table="idiomas.conocimiento_idioma"
+	 dst-table="idiomas.idioma" reference-fk="fk_idioma_conocimiento_idioma"
+	 src-required="false" dst-required="true"/>
+
+<relationship name="rel_conocimiento_idioma_nivel" type="relfk" layers="0"
+	 custom-color="#4dd625"
+	 src-table="idiomas.conocimiento_idioma"
+	 dst-table="idiomas.nivel" reference-fk="fk_nivel_conocimiento_idioma"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_conocimiento_idioma_valor_nivel_idioma" type="relfk" layers="0"
+	 custom-color="#814666"
+	 src-table="idiomas.conocimiento_idioma"
+	 dst-table="idiomas.valor_nivel_idioma" reference-fk="fk_valor_nivel_idioma_lee"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_conocimiento_idioma_valor_nivel_idioma1" type="relfk" layers="0"
+	 custom-color="#15323e"
+	 src-table="idiomas.conocimiento_idioma"
+	 dst-table="idiomas.valor_nivel_idioma" reference-fk="fk_valor_nivel_idioma_escribe"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_conocimiento_idioma_valor_nivel_idioma2" type="relfk" layers="0"
+	 custom-color="#9c65df"
+	 src-table="idiomas.conocimiento_idioma"
+	 dst-table="idiomas.valor_nivel_idioma" reference-fk="fk_valor_nivel_idioma_escucha"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_conocimiento_idioma_valor_nivel_idioma3" type="relfk" layers="0"
+	 custom-color="#0de585"
+	 src-table="idiomas.conocimiento_idioma"
+	 dst-table="idiomas.valor_nivel_idioma" reference-fk="fk_valor_nivel_idioma_habla"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_soporte_conocimiento_idioma_conocimiento_idioma" type="relfk" layers="0"
+	 custom-color="#f66e6d"
+	 src-table="idiomas.soporte_conocimiento_idioma"
+	 dst-table="idiomas.conocimiento_idioma" reference-fk="fk_conocimiento_idioma_soporte_conocimiento_idioma"
+	 src-required="false" dst-required="true"/>
+
+</dbmodel>
