@@ -11,17 +11,18 @@ import (
 )
 
 type ConocimientoIdioma struct {
-	Id                       int                       `orm:"column(id);pk;auto"`
-	Persona                  int                       `orm:"column(persona)"`
-	Idioma                   *Idioma                   `orm:"column(idioma);rel(fk)"`
-	NivelLee                 *ValorNivelIdioma         `orm:"column(nivel_lee);rel(fk)"`
-	NivelEscribe             *ValorNivelIdioma         `orm:"column(nivel_escribe);rel(fk)"`
-	NivelEscucha             *ValorNivelIdioma         `orm:"column(nivel_escucha);rel(fk)"`
-	NivelHabla               *ValorNivelIdioma         `orm:"column(nivel_habla);rel(fk)"`
-	Nativo                   bool                      `orm:"column(nativo)"`
-	ClasificacionNivelIdioma *Nivel					   `orm:"column(clasificacion_nivel_idioma);rel(fk)"`
-	FechaCreacion            string                    `orm:"column(fecha_creacion);null"`
-	FechaModificacion        string                    `orm:"column(fecha_modificacion);null"`
+	Id                       int               `orm:"column(id);pk;auto"`
+	Persona                  int               `orm:"column(persona)"`
+	Idioma                   *Idioma           `orm:"column(idioma);rel(fk)"`
+	NivelLee                 *ValorNivelIdioma `orm:"column(nivel_lee);rel(fk)"`
+	NivelEscribe             *ValorNivelIdioma `orm:"column(nivel_escribe);rel(fk)"`
+	NivelEscucha             *ValorNivelIdioma `orm:"column(nivel_escucha);rel(fk)"`
+	NivelHabla               *ValorNivelIdioma `orm:"column(nivel_habla);rel(fk)"`
+	Nativo                   bool              `orm:"column(nativo)"`
+	ClasificacionNivelIdioma *Nivel            `orm:"column(clasificacion_nivel_idioma);rel(fk)"`
+	Activo                   bool              `orm:"column(activo)"`
+	FechaCreacion            string            `orm:"column(fecha_creacion);null"`
+	FechaModificacion        string            `orm:"column(fecha_modificacion);null"`
 }
 
 type ConocimientoIdiomaV2 struct {
@@ -29,10 +30,12 @@ type ConocimientoIdiomaV2 struct {
 	TercerosId        int               `orm:"column(terceros_id)"`
 	IdiomaId          *Idioma           `orm:"column(idioma_id);rel(fk)"`
 	Nativo            bool              `orm:"column(nativo)"`
+	SeleccionExamen	  bool				`orm:"column(seleccion_examen)"`
 	NivelId           *Nivel            `orm:"column(nivel_id);rel(fk)"`
 	NivelLeeId        *ValorNivelIdioma `orm:"column(nivel_lee_id);rel(fk)"`
 	NivelEscribeId    *ValorNivelIdioma `orm:"column(nivel_escribe_id);rel(fk)"`
 	NivelEscuchaId    *ValorNivelIdioma `orm:"column(nivel_escucha_id);rel(fk)"`
+	Activo            bool              `orm:"column(activo)"`
 	NivelHablaId      *ValorNivelIdioma `orm:"column(nivel_habla_id);rel(fk)"`
 	FechaCreacion     time.Time         `orm:"column(fecha_creacion);type(timestamp without time zone);null"`
 	FechaModificacion time.Time         `orm:"column(fecha_modificacion);type(timestamp without time zone);null"`
