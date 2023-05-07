@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/astaxie/beego/orm"
+	"github.com/udistrital/utils_oas/time_bogota"
 )
 
 type ValorNivelIdioma struct {
@@ -133,6 +134,8 @@ func UpdateValorNivelIdiomaById(m *ValorNivelIdioma) (err error) {
 	v := ValorNivelIdioma{Id: m.Id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
+		m.FechaCreacion = v.FechaCreacion
+		m.FechaModificacion = time_bogota.Tiempo_bogota()
 		var num int64
 		if num, err = o.Update(m); err == nil {
 			fmt.Println("Number of records updated in database:", num)

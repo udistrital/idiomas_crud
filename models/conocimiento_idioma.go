@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/astaxie/beego/orm"
+	"github.com/udistrital/utils_oas/time_bogota"
 )
 
 type ConocimientoIdioma struct {
@@ -30,7 +31,7 @@ type ConocimientoIdiomaV2 struct {
 	TercerosId        int               `orm:"column(terceros_id)"`
 	IdiomaId          *Idioma           `orm:"column(idioma_id);rel(fk)"`
 	Nativo            bool              `orm:"column(nativo)"`
-	SeleccionExamen	  bool				`orm:"column(seleccion_examen)"`
+	SeleccionExamen   bool              `orm:"column(seleccion_examen)"`
 	NivelId           *Nivel            `orm:"column(nivel_id);rel(fk)"`
 	NivelLeeId        *ValorNivelIdioma `orm:"column(nivel_lee_id);rel(fk)"`
 	NivelEscribeId    *ValorNivelIdioma `orm:"column(nivel_escribe_id);rel(fk)"`
@@ -153,6 +154,8 @@ func UpdateConocimientoIdiomaById(m *ConocimientoIdiomaV2) (err error) {
 	v := ConocimientoIdiomaV2{Id: m.Id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
+		m.FechaCreacion = v.FechaCreacion
+		m.FechaModificacion = time_bogota.Tiempo_bogota()
 		var num int64
 		if num, err = o.Update(m); err == nil {
 			fmt.Println("Number of records updated in database:", num)
