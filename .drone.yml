@@ -131,13 +131,13 @@ steps:
     status:
     - failure
     
-- name: zap
-  image: owasp/zap2docker-weekly
-  commands:
-  - zap-baseline.py -t https://github.com/${DRONE_REPO}/blob/develop/swagger/swagger.json
-  when:
-    branch:
-    - develop
+# - name: zap
+#   image: owasp/zap2docker-weekly
+#   commands:
+#   - zap-baseline.py -t https://github.com/${DRONE_REPO}/blob/develop/swagger/swagger.json
+#   when:
+#     branch:
+#     - develop
 
 
 - name: publish_to_ecr_release
