@@ -14,7 +14,7 @@ paths:
   /clasificacion_nivel_idioma/:
     get:
       tags:
-      - nivel
+      - clasificacion_nivel_idioma
       description: get Nivel
       operationId: NivelController.Get All
       parameters:
@@ -51,7 +51,7 @@ paths:
           description: not found resource
     post:
       tags:
-      - nivel
+      - clasificacion_nivel_idioma
       description: create Nivel
       operationId: NivelController.Post
       parameters:
@@ -69,7 +69,7 @@ paths:
   /clasificacion_nivel_idioma/{id}:
     get:
       tags:
-      - nivel
+      - clasificacion_nivel_idioma
       description: get Nivel by id
       operationId: NivelController.Get One
       parameters:
@@ -87,7 +87,7 @@ paths:
           description: not found resource
     put:
       tags:
-      - nivel
+      - clasificacion_nivel_idioma
       description: update the Nivel
       operationId: NivelController.Put
       parameters:
@@ -111,7 +111,7 @@ paths:
           description: the request contains incorrect syntax
     delete:
       tags:
-      - nivel
+      - clasificacion_nivel_idioma
       description: delete the Nivel
       operationId: NivelController.Delete
       parameters:
@@ -356,7 +356,7 @@ paths:
   /nivel/:
     get:
       tags:
-      - nivel
+      - clasificacion_nivel_idioma
       description: get Nivel
       operationId: NivelController.Get All
       parameters:
@@ -393,7 +393,7 @@ paths:
           description: not found resource
     post:
       tags:
-      - nivel
+      - clasificacion_nivel_idioma
       description: create Nivel
       operationId: NivelController.Post
       parameters:
@@ -411,7 +411,7 @@ paths:
   /nivel/{id}:
     get:
       tags:
-      - nivel
+      - clasificacion_nivel_idioma
       description: get Nivel by id
       operationId: NivelController.Get One
       parameters:
@@ -429,7 +429,7 @@ paths:
           description: not found resource
     put:
       tags:
-      - nivel
+      - clasificacion_nivel_idioma
       description: update the Nivel
       operationId: NivelController.Put
       parameters:
@@ -453,7 +453,7 @@ paths:
           description: the request contains incorrect syntax
     delete:
       tags:
-      - nivel
+      - clasificacion_nivel_idioma
       description: delete the Nivel
       operationId: NivelController.Delete
       parameters:
@@ -755,6 +755,8 @@ definitions:
         $ref: '#/definitions/models.Nivel'
       NivelLeeId:
         $ref: '#/definitions/models.ValorNivelIdioma'
+      SeleccionExamen:
+        type: boolean
       TercerosId:
         type: integer
         format: int64
@@ -909,3 +911,6 @@ tags:
 - name: soporte_conocimiento_idioma
   description: |
     SoporteConocimientoIdiomaV2Controller operations for SoporteConocimientoIdioma
+- name: clasificacion_nivel_idioma
+  description: |
+    NivelController operations for Nivel
