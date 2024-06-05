@@ -18,7 +18,7 @@
         "/clasificacion_nivel_idioma/": {
             "get": {
                 "tags": [
-                    "nivel"
+                    "clasificacion_nivel_idioma"
                 ],
                 "description": "get Nivel",
                 "operationId": "NivelController.Get All",
@@ -74,7 +74,7 @@
             },
             "post": {
                 "tags": [
-                    "nivel"
+                    "clasificacion_nivel_idioma"
                 ],
                 "description": "create Nivel",
                 "operationId": "NivelController.Post",
@@ -102,7 +102,7 @@
         "/clasificacion_nivel_idioma/{id}": {
             "get": {
                 "tags": [
-                    "nivel"
+                    "clasificacion_nivel_idioma"
                 ],
                 "description": "get Nivel by id",
                 "operationId": "NivelController.Get One",
@@ -129,7 +129,7 @@
             },
             "put": {
                 "tags": [
-                    "nivel"
+                    "clasificacion_nivel_idioma"
                 ],
                 "description": "update the Nivel",
                 "operationId": "NivelController.Put",
@@ -165,7 +165,7 @@
             },
             "delete": {
                 "tags": [
-                    "nivel"
+                    "clasificacion_nivel_idioma"
                 ],
                 "description": "delete the Nivel",
                 "operationId": "NivelController.Delete",
@@ -537,7 +537,7 @@
         "/nivel/": {
             "get": {
                 "tags": [
-                    "nivel"
+                    "clasificacion_nivel_idioma"
                 ],
                 "description": "get Nivel",
                 "operationId": "NivelController.Get All",
@@ -593,7 +593,7 @@
             },
             "post": {
                 "tags": [
-                    "nivel"
+                    "clasificacion_nivel_idioma"
                 ],
                 "description": "create Nivel",
                 "operationId": "NivelController.Post",
@@ -621,7 +621,7 @@
         "/nivel/{id}": {
             "get": {
                 "tags": [
-                    "nivel"
+                    "clasificacion_nivel_idioma"
                 ],
                 "description": "get Nivel by id",
                 "operationId": "NivelController.Get One",
@@ -648,7 +648,7 @@
             },
             "put": {
                 "tags": [
-                    "nivel"
+                    "clasificacion_nivel_idioma"
                 ],
                 "description": "update the Nivel",
                 "operationId": "NivelController.Put",
@@ -684,7 +684,7 @@
             },
             "delete": {
                 "tags": [
-                    "nivel"
+                    "clasificacion_nivel_idioma"
                 ],
                 "description": "delete the Nivel",
                 "operationId": "NivelController.Delete",
@@ -1139,6 +1139,9 @@
                 "NivelLeeId": {
                     "$ref": "#/definitions/models.ValorNivelIdioma"
                 },
+                "SeleccionExamen": {
+                    "type": "boolean"
+                },
                 "TercerosId": {
                     "type": "integer",
                     "format": "int64"
@@ -1356,6 +1359,10 @@
         {
             "name": "soporte_conocimiento_idioma",
             "description": "SoporteConocimientoIdiomaV2Controller operations for SoporteConocimientoIdioma\n"
+        },
+        {
+            "name": "clasificacion_nivel_idioma",
+            "description": "NivelController operations for Nivel\n"
         }
     ]
 }
